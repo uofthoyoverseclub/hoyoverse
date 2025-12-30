@@ -14,6 +14,7 @@ interface Event {
   attendees: number;
   type: 'upcoming' | 'past';
   category: string;
+  startTime: number;
 }
 
 export function Events() {
@@ -48,6 +49,7 @@ export function Events() {
             attendees: 0, // Discord does not expose attendee counts
             type: e.status === 1 ? 'upcoming' : 'past',
             category: 'Discord Events',
+            startTime: start.getTime(),
           };
         });
 
@@ -60,9 +62,9 @@ export function Events() {
       });
   }, []);
 
-  const filteredEvents = events.filter(
-    (event) => filter === 'all' || event.type === filter
-  );
+  const filteredEvents = events
+  .filter((event) => filter === 'all' || event.type === filter)
+  .sort((a, b) => a.startTime - b.startTime);
 
   return (
     <div>
