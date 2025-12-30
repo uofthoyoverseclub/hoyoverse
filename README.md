@@ -1,7 +1,7 @@
 
   # Club Website UI/UX Prototype
 
-  This is a code bundle for Club Website UI/UX Prototype. The original project is available at https://www.figma.com/design/bw4J6uFOA5oSUCArlJcNtx/Club-Website-UI-UX-Prototype.
+  This is a code bundle for Hoyoclub Website
 
   ## Running the code
 
