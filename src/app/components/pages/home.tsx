@@ -10,7 +10,7 @@ export function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-5xl mb-6">Welcome to Our Club</h1>
+              <h1 className="text-5xl mb-6">Welcome to Hoyo Club</h1>
               <p className="text-xl text-blue-100 mb-8">
                 Join a community of passionate students dedicated to innovation, learning, and making a difference.
               </p>
@@ -80,12 +80,12 @@ export function Home() {
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                 <BookOpen className="text-blue-600" size={24} />
               </div>
-              <h3 className="text-xl mb-3 text-gray-900">Research Papers</h3>
+              <h3 className="text-xl mb-3 text-gray-900">Photo Gallery</h3>
               <p className="text-gray-600 mb-4">
-                Access cutting-edge research and resources to support your academic and professional growth.
+                Browse through our collection of memorable moments from events, gaming sessions, and community gatherings.
               </p>
-              <Link to="/papers" className="text-blue-600 hover:text-blue-700 inline-flex items-center gap-1">
-                Read Papers <ArrowRight size={16} />
+              <Link to="/photos" className="text-blue-600 hover:text-blue-700 inline-flex items-center gap-1">
+                View Photos <ArrowRight size={16} />
               </Link>
             </div>
           </div>
@@ -106,7 +106,7 @@ export function Home() {
             </div>
             <div>
               <div className="text-4xl text-blue-600 mb-2">30+</div>
-              <div className="text-gray-600">Research Papers</div>
+              <div className="text-gray-600">Photo Albums</div>
             </div>
             <div>
               <div className="text-4xl text-blue-600 mb-2">15+</div>

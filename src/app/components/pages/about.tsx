@@ -8,7 +8,7 @@ export function About() {
       <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <h1 className="text-5xl mb-6">About Our Club</h1>
+            <h1 className="text-5xl mb-6">About Hoyo Club</h1>
             <p className="text-xl text-blue-100">
               We are a student-led organization dedicated to fostering innovation, collaboration, and excellence in our community.
             </p>

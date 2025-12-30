@@ -6,7 +6,7 @@ import { About } from './components/pages/about';
 import { Events } from './components/pages/events';
 import { Team } from './components/pages/team';
 import { Join } from './components/pages/join';
-import { Papers } from './components/pages/papers';
+import { Photos } from './components/pages/photos';
 
 export default function App() {
   return (
@@ -20,7 +20,7 @@ export default function App() {
             <Route path="/events" element={<Events />} />
             <Route path="/team" element={<Team />} />
             <Route path="/join" element={<Join />} />
-            <Route path="/papers" element={<Papers />} />
+            <Route path="/photos" element={<Photos />} />
           </Routes>
         </main>
         <Footer />
