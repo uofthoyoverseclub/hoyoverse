@@ -12,6 +12,7 @@ export function Navigation() {
     { name: 'Events', path: '/events' },
     { name: 'Team', path: '/team' },
     { name: 'Photos', path: '/photos' },
+    { name: 'Social', path: '/social' },
     { name: 'Join', path: '/join' },
   ];
 

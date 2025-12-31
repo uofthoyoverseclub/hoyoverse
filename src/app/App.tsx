@@ -7,6 +7,7 @@ import { Events } from './components/pages/events';
 import { Team } from './components/pages/team';
 import { Join } from './components/pages/join';
 import { Photos } from './components/pages/photos';
+import { Social } from './components/pages/social';
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
             <Route path="/team" element={<Team />} />
             <Route path="/join" element={<Join />} />
             <Route path="/photos" element={<Photos />} />
+            <Route path="/social" element={<Social />} />
           </Routes>
         </main>
         <Footer />

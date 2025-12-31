@@ -66,7 +66,7 @@ export function About() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl mb-4 text-gray-900">What We Do</h2>
+            <h2 className="text-4xl mb-4 text-gray-900">What We Offer</h2>
             <p className="text-xl text-gray-600">Having fun and more fun!</p>
           </div>
 
@@ -94,7 +94,7 @@ export function About() {
               <div className="p-6">
                 <h3 className="text-xl mb-3 text-gray-900">Workshops!</h3>
                 <p className="text-gray-600">
-                  Hosting various workshops about game strategies, cosplaying, arts, etc. to help members find a sense of community. 
+                  Hosting various events about game strategies, cosplaying, arts, etc. to help members find a sense of community. 
                 </p>
               </div>
             </div>
@@ -109,6 +109,35 @@ export function About() {
                 <h3 className="text-xl mb-3 text-gray-900">Field Trips!</h3>
                 <p className="text-gray-600">
                   Our clubs hosts trips for upcoming anime conventions, food spots, and other exciting locations!
+                </p>
+              </div>
+            </div>
+
+
+            <div className="bg-white rounded-lg overflow-hidden shadow-sm">
+              <ImageWithFallback
+                src="/Online Events.png"
+                alt="Online events"
+                className="w-full h-96 object-cover"
+              />
+              <div className="p-6">
+                <h3 className="text-xl mb-3 text-gray-900">Online Events!</h3>
+                <p className="text-gray-600">
+                  Can't make it to campus? No problem! We host regular online events including game nights, watch parties, and virtual meetups so you can join the fun from anywhere.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg overflow-hidden shadow-sm">
+              <ImageWithFallback
+                src="/Events.jpg"
+                alt="In-person events"
+                className="w-full h-96 object-cover"
+              />
+              <div className="p-6">
+                <h3 className="text-xl mb-3 text-gray-900">In-Person Events!</h3>
+                <p className="text-gray-600">
+                  Join us on campus for exciting in-person gatherings, game sessions, and social events where you can meet fellow club members face-to-face and build lasting friendships!
                 </p>
               </div>
             </div>
