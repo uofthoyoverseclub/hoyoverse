@@ -34,7 +34,7 @@ const teamMembers: TeamMember[] = [
     id: 2,
     name: 'Daniel Tung',
     role: 'Vice President',
-    bio: 'I am rich as fuck',
+    bio: "Chronically online banana, gacha crazed cosplayer. Got randomly picked up (kidnapped) at UTM CCT one random evening and was deemed worthy of a leadership position. I try my best to attend anything and everything which happens  in the club. If you ever see me, say 'Banana', and I'll know you're a real one frfr.",
     image: '/Daniel.png',
     email: '',
     linkedin: '#',
@@ -194,14 +194,14 @@ export function Team() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl mb-4" style={{ color: '#a8dadc' }}>Want to Join Our Team?</h2>
           <p className="text-xl mb-8" style={{ color: '#a8dadc' }}>
-            We're always looking for passionate individuals to help us grow our community. Applications open at the beginning of each semester.
+            We're always looking for passionate individuals to help us grow our community. Applications open at the beginning of each semester. Join our discord to stay updated on team recruitment!
           </p>
           <a
             href="/join"
             className="text-white px-8 py-3 rounded-lg transition-colors inline-block"
             style={{ backgroundColor: '#006494' }}
           >
-            Learn More
+            Join Discord
           </a>
         </div>
       </section>
