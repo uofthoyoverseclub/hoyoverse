@@ -18,9 +18,9 @@ export function About() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-20">
+      <section className="py-20" style={{ backgroundColor: '#1d3557' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-20">
             <div className="relative h-[600px]">
               <ImageWithFallback
                 src="/About3.jpg"
@@ -49,11 +49,11 @@ export function About() {
               />
             </div>
             <div>
-              <h2 className="text-4xl mb-6 text-gray-900">Our Founding</h2>
-              <p className="text-gray-600 mb-4">
-                Our club started as a idea in April of 2025, when our founder Mashal realized that there didn't exist a community for gacha enthusiasts at the University of Toronto. Since then, the idea of HoyoClub grew as the foundation was established to bring together like-minded students. Since September 2025, Hoyoverse Club has grown from a team of 6 students to a 25 large team, and over 300 members of the club. 
+              <h2 className="text-4xl mb-6" style={{ color: '#a8dadc' }}>Our Founding</h2>
+              <p className="text-lg mb-4" style={{ color: '#a8dadc' }}>
+                Our club started as a idea in April of 2025, when our founder Mashal realized that there didn't exist a community for gacha enthusiasts at the University of Toronto. From then on, the idea of HoyoClub grew as the foundation was established to bring together like-minded students. Since September 2025, Hoyoverse Club has grown from a team of 6 students to a 25 large team, and over 300 members of the club. 
               </p>
-              <p className="text-gray-600">
+              <p className="text-lg" style={{ color: '#a8dadc' }}>
                 In Hoyoverse Club, we believe in having fun. Hoyoclub is a for fun club that gives students a community to interact with others who share the same passion for gacha games. We host a variety of events, both online and in-person, to bring our members together and create lasting memories. Check out our photos page to see some of the fun we've had so far!
               </p>
             </div>
@@ -63,94 +63,94 @@ export function About() {
       </section>
 
       {/* What We Do */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20" style={{ backgroundColor: '#1d3557' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl mb-4 text-gray-900">What We Offer</h2>
-            <p className="text-xl text-gray-600">Having fun and more fun!</p>
+            <h2 className="text-4xl mb-4" style={{ color: '#a8dadc' }}>What We Offer</h2>
+            <p className="text-xl" style={{ color: '#a8dadc' }}>Having fun and more fun!</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-lg overflow-hidden shadow-sm">
+            <div className="rounded-lg overflow-hidden shadow-sm" style={{ backgroundColor: '#006494' }}>
               <ImageWithFallback
                 src="/Pulling Party.png"
                 alt="Pulling Party event"
                 className="w-full h-96 object-cover"
               />
               <div className="p-6">
-                <h3 className="text-xl mb-3 text-gray-900">Pulling Parties!</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl mb-3 text-white">Pulling Parties!</h3>
+                <p className="text-white/90">
                   Regular pulling parties online or inperson where members can gather to stream their pulls to the whole club!
                 </p>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg overflow-hidden shadow-sm">
+            <div className="rounded-lg overflow-hidden shadow-sm" style={{ backgroundColor: '#006494' }}>
               <ImageWithFallback
                 src="/workshop.jpg"
                 alt="Workshop event"
                 className="w-full h-96 object-cover"
               />
               <div className="p-6">
-                <h3 className="text-xl mb-3 text-gray-900">Workshops!</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl mb-3 text-white">Workshops!</h3>
+                <p className="text-white/90">
                   Hosting various events about game strategies, cosplaying, arts, etc. to help members find a sense of community. 
                 </p>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg overflow-hidden shadow-sm">
+            <div className="rounded-lg overflow-hidden shadow-sm" style={{ backgroundColor: '#006494' }}>
               <ImageWithFallback
                 src="/field trips.jpg"
                 alt="Field trips event"
                 className="w-full h-96 object-cover"
               />
               <div className="p-6">
-                <h3 className="text-xl mb-3 text-gray-900">Field Trips!</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl mb-3 text-white">Field Trips!</h3>
+                <p className="text-white/90">
                   Our clubs hosts trips for upcoming anime conventions, food spots, and other exciting locations!
                 </p>
               </div>
             </div>
 
 
-            <div className="bg-white rounded-lg overflow-hidden shadow-sm">
+            <div className="rounded-lg overflow-hidden shadow-sm" style={{ backgroundColor: '#006494' }}>
               <ImageWithFallback
                 src="/Online Events.png"
                 alt="Online events"
                 className="w-full h-96 object-cover"
               />
               <div className="p-6">
-                <h3 className="text-xl mb-3 text-gray-900">Online Events!</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl mb-3 text-white">Online Events!</h3>
+                <p className="text-white/90">
                   Can't make it to campus? No problem! We host regular online events including game nights, watch parties, and virtual meetups so you can join the fun from anywhere.
                 </p>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg overflow-hidden shadow-sm">
+            <div className="rounded-lg overflow-hidden shadow-sm" style={{ backgroundColor: '#006494' }}>
               <ImageWithFallback
                 src="/Events.jpg"
                 alt="In-person events"
                 className="w-full h-96 object-cover"
               />
               <div className="p-6">
-                <h3 className="text-xl mb-3 text-gray-900">In-Person Events!</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl mb-3 text-white">In-Person Events!</h3>
+                <p className="text-white/90">
                   Join us on campus for exciting in-person gatherings, game sessions, and social events where you can meet fellow club members face-to-face and build lasting friendships!
                 </p>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg overflow-hidden shadow-sm">
+            <div className="rounded-lg overflow-hidden shadow-sm" style={{ backgroundColor: '#006494' }}>
               <ImageWithFallback
                 src="/more.jpg"
                 alt="More activities"
                 className="w-full h-96 object-cover"
               />
               <div className="p-6">
-                <h3 className="text-xl mb-3 text-gray-900">And so MUCH MORE!</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl mb-3 text-white">And so MUCH MORE!</h3>
+                <p className="text-white/90">
                   Join our Discord to stay updated on all the fun events we have planned throughout the year, including competitions with prizes, conventions, and social hangouts!
                 </p>
               </div>

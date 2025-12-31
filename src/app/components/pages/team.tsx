@@ -5,11 +5,17 @@ interface TeamMember {
   id: number;
   name: string;
   role: string;
-  bio: string;
   image: string;
   email: string;
   linkedin?: string;
   twitter?: string;
+  type: 'exec' | 'associate';
+  // For execs
+  bio?: string;
+  // For associates
+  campus?: string;
+  study?: string;
+  year?: string;
 }
 
 const teamMembers: TeamMember[] = [
@@ -22,6 +28,7 @@ const teamMembers: TeamMember[] = [
     email: 'sarah@clubname.com',
     linkedin: '#',
     twitter: '#',
+    type: 'exec',
   },
   {
     id: 2,
@@ -31,6 +38,7 @@ const teamMembers: TeamMember[] = [
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400',
     email: 'michael@clubname.com',
     linkedin: '#',
+    type: 'exec',
   },
   {
     id: 3,
@@ -41,33 +49,43 @@ const teamMembers: TeamMember[] = [
     email: 'emily@clubname.com',
     linkedin: '#',
     twitter: '#',
+    type: 'exec',
   },
   {
     id: 4,
     name: 'David Park',
     role: 'Technical Lead',
-    bio: 'Leading technical workshops and mentoring members in software development.',
+    campus: 'St. George',
+    study: 'Computer Science',
+    year: '3rd Year',
     image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400',
     email: 'david@clubname.com',
     linkedin: '#',
+    type: 'associate',
   },
   {
     id: 5,
     name: 'Jessica Williams',
     role: 'Marketing Director',
-    bio: 'Spreading the word about our club and building our online presence.',
+    campus: 'St. George',
+    study: 'Marketing',
+    year: '2nd Year',
     image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400',
     email: 'jessica@clubname.com',
     twitter: '#',
+    type: 'associate',
   },
   {
     id: 6,
     name: 'Alex Thompson',
     role: 'Treasurer',
-    bio: 'Managing our finances and ensuring sustainable growth.',
+    campus: 'Mississauga',
+    study: 'Finance',
+    year: '4th Year',
     image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400',
     email: 'alex@clubname.com',
     linkedin: '#',
+    type: 'associate',
   },
 ];
 
@@ -75,12 +93,21 @@ export function Team() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section
+        className="relative text-white py-30 bg-center"
+        style={{
+          backgroundImage: "url('/flins%20lauma.webp')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center 20%',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="text-5xl mb-6">Our Team</h1>
-            <p className="text-xl text-blue-100">
-              Meet the dedicated individuals who make our club a thriving community.
+            <p className="text-xl text-white/90">
+              Meet the wonderful team of execs and associates who make this club possible!
             </p>
           </div>
         </div>
@@ -89,51 +116,123 @@ export function Team() {
       {/* Team Grid */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {teamMembers.map((member) => (
-              <div
-                key={member.id}
-                className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-200 overflow-hidden"
-              >
-                <div className="aspect-square bg-gray-200 overflow-hidden">
-                  <ImageWithFallback
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl mb-1 text-gray-900">{member.name}</h3>
-                  <p className="text-blue-600 mb-3">{member.role}</p>
-                  <p className="text-gray-600 mb-4">{member.bio}</p>
+          {/* Executive Team */}
+          <div className="mb-16">
+            <h2 className="text-4xl mb-8 text-gray-900 text-center">Executive Team</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {teamMembers.filter(member => member.type === 'exec').map((member) => (
+                <div
+                  key={member.id}
+                  className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-200 overflow-hidden"
+                >
+                  <div className="aspect-square bg-gray-200 overflow-hidden">
+                    <ImageWithFallback
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl mb-1 text-gray-900">{member.name}</h3>
+                    <p className="text-blue-600 mb-3">{member.role}</p>
+                    <p className="text-gray-600 mb-4">{member.bio}</p>
 
-                  <div className="flex gap-3">
-                    <a
-                      href={`mailto:${member.email}`}
-                      className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors text-gray-700"
-                    >
-                      <Mail size={18} />
-                    </a>
-                    {member.linkedin && (
+                    <div className="flex gap-3">
                       <a
-                        href={member.linkedin}
+                        href={`mailto:${member.email}`}
                         className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors text-gray-700"
                       >
-                        <Linkedin size={18} />
+                        <Mail size={18} />
                       </a>
-                    )}
-                    {member.twitter && (
-                      <a
-                        href={member.twitter}
-                        className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors text-gray-700"
-                      >
-                        <Twitter size={18} />
-                      </a>
-                    )}
+                      {member.linkedin && (
+                        <a
+                          href={member.linkedin}
+                          className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors text-gray-700"
+                        >
+                          <Linkedin size={18} />
+                        </a>
+                      )}
+                      {member.twitter && (
+                        <a
+                          href={member.twitter}
+                          className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors text-gray-700"
+                        >
+                          <Twitter size={18} />
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+          </div>
+
+          {/* Associates */}
+          <div>
+            <h2 className="text-4xl mb-8 text-gray-900 text-center">Associates</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {teamMembers.filter(member => member.type === 'associate').map((member) => (
+                <div
+                  key={member.id}
+                  className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-200 overflow-hidden"
+                >
+                  <div className="aspect-square bg-gray-200 overflow-hidden">
+                    <ImageWithFallback
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl mb-1 text-gray-900">{member.name}</h3>
+                    <p className="text-blue-600 mb-3">{member.role}</p>
+                    
+                    <div className="space-y-1 mb-4">
+                      {member.campus && (
+                        <p className="text-sm text-gray-600">
+                          <span className="font-semibold">Campus:</span> {member.campus}
+                        </p>
+                      )}
+                      {member.study && (
+                        <p className="text-sm text-gray-600">
+                          <span className="font-semibold">Study:</span> {member.study}
+                        </p>
+                      )}
+                      {member.year && (
+                        <p className="text-sm text-gray-600">
+                          <span className="font-semibold">Year:</span> {member.year}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="flex gap-3">
+                      <a
+                        href={`mailto:${member.email}`}
+                        className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors text-gray-700"
+                      >
+                        <Mail size={18} />
+                      </a>
+                      {member.linkedin && (
+                        <a
+                          href={member.linkedin}
+                          className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors text-gray-700"
+                        >
+                          <Linkedin size={18} />
+                        </a>
+                      )}
+                      {member.twitter && (
+                        <a
+                          href={member.twitter}
+                          className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors text-gray-700"
+                        >
+                          <Twitter size={18} />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

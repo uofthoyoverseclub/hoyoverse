@@ -16,7 +16,7 @@ const TikTokIcon = ({ size = 20 }: { size?: number }) => (
 
 export function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300">
+    <footer className="border-t" style={{ backgroundColor: '#1d3557', color: '#a8dadc', borderTopColor: '#a8dadc' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
@@ -26,15 +26,15 @@ export function Footer() {
                 alt="Hoyo Club logo"
                 className="w-12 h-12 rounded-lg object-cover border border-gray-800 bg-white"
               />
-              <span className="text-xl text-white">Hoyoverse Club</span>
+              <span className="text-xl" style={{ color: '#a8dadc' }}>Hoyoverse Club</span>
             </div>
-            <p className="text-gray-400 mb-4">
+            <p className="mb-4" style={{ color: '#a8dadc' }}>
               Building a community of passionate students for all things gacha!
             </p>
           </div>
 
           <div>
-            <h3 className="text-white mb-4">Navigation</h3>
+            <h3 className="mb-4" style={{ color: '#a8dadc' }}>Navigation</h3>
             <ul className="space-y-2">
               <li><a href="/about" className="hover:text-white transition-colors">About Us</a></li>
               <li><a href="/events" className="hover:text-white transition-colors">Events</a></li>
@@ -44,26 +44,26 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-white mb-4">Contact</h3>
+            <h3 className="mb-4" style={{ color: '#a8dadc' }}>Contact</h3>
             <div className="flex items-center space-x-2 mb-3">
               <Mail size={18} />
               <span>uoft.hoyo@studentorg.utoronto.ca</span>
             </div>
             <div className="flex space-x-4 mt-4">
-              <a href="https://discord.gg/3De2staqpN" className="hover:text-blue-400 transition-colors">
+              <a href="https://discord.gg/3De2staqpN" className="transition-colors" style={{ color: '#a8dadc' }}>
                 <DiscordIcon size={20} />
               </a>
-              <a href="https://www.instagram.com/uofthoyoverseclub/" className="hover:text-blue-400 transition-colors">
+              <a href="https://www.instagram.com/uofthoyoverseclub/" className="transition-colors" style={{ color: '#a8dadc' }}>
                 <Instagram size={20} />
               </a>
-              <a href="https://www.tiktok.com/@uofthoyoverseclub" className="hover:text-blue-400 transition-colors">
+              <a href="https://www.tiktok.com/@uofthoyoverseclub" className="transition-colors" style={{ color: '#a8dadc' }}>
                 <TikTokIcon size={20} />
               </a>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+        <div className="border-t mt-8 pt-8 text-center" style={{ borderTopColor: '#a8dadc', color: '#a8dadc' }}>
           <p>&copy; 2025 HoyoClub. All rights reserved.</p>
         </div>
       </div>

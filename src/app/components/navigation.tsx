@@ -19,16 +19,16 @@ export function Navigation() {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
+    <nav className="sticky top-0 z-50 bg-gradient-to-r from-indigo-950 via-blue-950 to-purple-950 border-b border-indigo-800/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link to="/" className="flex items-center space-x-3">
             <img
               src="/logo.png"
               alt="Hoyo Club logo"
-              className="w-12 h-12 rounded-lg object-cover border border-gray-200 bg-white"
+              className="w-12 h-12 rounded-lg object-cover border border-indigo-400/30 bg-white"
             />
-            <span className="text-xl text-gray-900">HoyoClub</span>
+            <span className="text-xl text-white font-semibold">HoyoClub</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -39,8 +39,8 @@ export function Navigation() {
                 to={item.path}
                 className={`px-4 py-2 rounded-md transition-colors ${
                   isActive(item.path)
-                    ? 'bg-blue-50 text-blue-600'
-                    : 'text-gray-700 hover:bg-gray-50'
+                    ? 'bg-indigo-600/40 text-white border border-indigo-400/30'
+                    : 'text-indigo-100 hover:bg-indigo-800/40 hover:text-white'
                 }`}
               >
                 {item.name}
@@ -51,7 +51,7 @@ export function Navigation() {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100"
+            className="md:hidden p-2 rounded-md text-indigo-100 hover:bg-indigo-800/40"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -67,8 +67,8 @@ export function Navigation() {
                 onClick={() => setIsOpen(false)}
                 className={`block px-4 py-2 rounded-md transition-colors ${
                   isActive(item.path)
-                    ? 'bg-blue-50 text-blue-600'
-                    : 'text-gray-700 hover:bg-gray-50'
+                    ? 'bg-indigo-600/40 text-white border border-indigo-400/30'
+                    : 'text-indigo-100 hover:bg-indigo-800/40 hover:text-white'
                 }`}
               >
                 {item.name}
