@@ -1,5 +1,19 @@
 import { Facebook, Twitter, Instagram, Linkedin, Mail } from 'lucide-react';
 
+// Discord icon component (lucide-react doesn't have Discord, so we'll use an SVG)
+const DiscordIcon = ({ size = 20 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+  </svg>
+);
+
+// TikTok icon component
+const TikTokIcon = ({ size = 20 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+  </svg>
+);
+
 export function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300">
@@ -15,12 +29,12 @@ export function Footer() {
               <span className="text-xl text-white">Hoyo Club</span>
             </div>
             <p className="text-gray-400 mb-4">
-              Building a community of passionate students dedicated to innovation, collaboration, and excellence.
+              Building a community of passionate students for all things gacha!
             </p>
           </div>
 
           <div>
-            <h3 className="text-white mb-4">Quick Links</h3>
+            <h3 className="text-white mb-4">Navigation</h3>
             <ul className="space-y-2">
               <li><a href="/about" className="hover:text-white transition-colors">About Us</a></li>
               <li><a href="/events" className="hover:text-white transition-colors">Events</a></li>
@@ -33,27 +47,24 @@ export function Footer() {
             <h3 className="text-white mb-4">Contact</h3>
             <div className="flex items-center space-x-2 mb-3">
               <Mail size={18} />
-              <span>contact@clubname.com</span>
+              <span>uoft.hoyo@studentorg.utoronto.ca</span>
             </div>
             <div className="flex space-x-4 mt-4">
-              <a href="#" className="hover:text-blue-400 transition-colors">
-                <Facebook size={20} />
+              <a href="https://discord.gg/3De2staqpN" className="hover:text-blue-400 transition-colors">
+                <DiscordIcon size={20} />
               </a>
-              <a href="#" className="hover:text-blue-400 transition-colors">
-                <Twitter size={20} />
-              </a>
-              <a href="#" className="hover:text-blue-400 transition-colors">
+              <a href="https://www.instagram.com/uofthoyoverseclub/" className="hover:text-blue-400 transition-colors">
                 <Instagram size={20} />
               </a>
-              <a href="#" className="hover:text-blue-400 transition-colors">
-                <Linkedin size={20} />
+              <a href="https://www.tiktok.com/@uofthoyoverseclub" className="hover:text-blue-400 transition-colors">
+                <TikTokIcon size={20} />
               </a>
             </div>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
-          <p>&copy; 2025 Hoyo Club. All rights reserved.</p>
+          <p>&copy; 2025 HoyoClub. All rights reserved.</p>
         </div>
       </div>
     </footer>
