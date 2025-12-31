@@ -19,7 +19,7 @@ interface Event {
 
 export function Events() {
   const [events, setEvents] = useState<Event[]>([]);
-  const [filter, setFilter] = useState<'all' | 'upcoming' | 'past'>('all');
+  // const [filter, setFilter] = useState<'all' | 'upcoming' | 'past'>('all');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -45,15 +45,19 @@ export function Events() {
             location: e.entity_metadata?.location || 'Discord',
             image: e.image
               ? `https://cdn.discordapp.com/guild-events/${e.id}/${e.image}.png`
-              : '/fallback-event.jpg',
+              : '/logo.png',
             attendees: 0, // Discord does not expose attendee counts
             type: e.status === 1 ? 'upcoming' : 'past',
-            category: 'Discord Events',
+            category: 'Event',
             startTime: start.getTime(),
           };
         });
 
-        setEvents(mappedEvents);
+        setEvents(
+          mappedEvents
+            .filter(event => event.type === 'upcoming')
+            .sort((a, b) => a.startTime - b.startTime)
+        );
         setLoading(false);
       })
       .catch(() => {
@@ -62,20 +66,20 @@ export function Events() {
       });
   }, []);
 
-  const filteredEvents = events
-  .filter((event) => filter === 'all' || event.type === filter)
-  .sort((a, b) => a.startTime - b.startTime);
+  // const filteredEvents = events
+  // .filter((event) => filter === 'all' || event.type === filter)
+  // .sort((a, b) => a.startTime - b.startTime);
 
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
+      <section className="relative text-white py-32" style={{ backgroundImage: 'url(/Banner.png)', backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '500px' }}>
+        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-end">
+          <div className="max-w-3xl text-right">
             <h1 className="text-5xl mb-6">Events</h1>
             <p className="text-xl text-blue-100">
-              Join our workshops, hackathons, and networking events to learn,
-              grow, and connect with the community.
+              We host everything from in-person socials and events to online game nights and watch parties. Whether you’re on campus or joining remotely, there’s always something happening.
             </p>
           </div>
         </div>
@@ -85,7 +89,7 @@ export function Events() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Filter Buttons */}
-          <div className="flex gap-4 mb-12">
+          {/* <div className="flex gap-4 mb-12">
             {(['all', 'upcoming', 'past'] as const).map((key) => (
               <button
                 key={key}
@@ -101,7 +105,7 @@ export function Events() {
                   : key.charAt(0).toUpperCase() + key.slice(1)}
               </button>
             ))}
-          </div>
+          </div> */}
 
           {/* Loading / Error */}
           {loading && (
@@ -120,7 +124,7 @@ export function Events() {
           {!loading && !error && (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredEvents.map((event) => (
+                {events.map((event) => (
                   <div
                     key={event.id}
                     className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-200 overflow-hidden"
@@ -186,7 +190,7 @@ export function Events() {
                 ))}
               </div>
 
-              {filteredEvents.length === 0 && (
+              {events.length === 0 && (
                 <div className="text-center py-12">
                   <p className="text-gray-600 text-lg">No events found.</p>
                 </div>
