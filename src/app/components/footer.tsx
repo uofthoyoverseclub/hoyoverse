@@ -26,7 +26,7 @@ export function Footer() {
                 alt="Hoyo Club logo"
                 className="w-12 h-12 rounded-lg object-cover border border-gray-800 bg-white"
               />
-              <span className="text-xl text-white">Hoyo Club</span>
+              <span className="text-xl text-white">Hoyoverse Club</span>
             </div>
             <p className="text-gray-400 mb-4">
               Building a community of passionate students for all things gacha!
