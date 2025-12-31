@@ -7,5 +7,5 @@
 
   Run `npm install` to install the dependencies.
 
-  Run `npm run dev` to start the development server.
+  Run `npm run dev` and `node server.js` in two seperate terminals to start the development server.
   
