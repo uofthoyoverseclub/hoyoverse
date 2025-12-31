@@ -5,10 +5,11 @@ export function About() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <h1 className="text-5xl mb-6">About Hoyo Club</h1>
+      <section className="relative text-white py-32" style={{ backgroundImage: 'url(/Banner.png)', backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '500px' }}>
+        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-end">
+          <div className="max-w-3xl text-right">
+            <h1 className="text-5xl mb-6">About HoyoClub</h1>
             <p className="text-xl text-blue-100">
               We are a student-led organization dedicated to fostering innovation, collaboration, and excellence in our community.
             </p>
@@ -20,55 +21,44 @@ export function About() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
-            <div>
+            <div className="relative h-[600px]">
               <ImageWithFallback
-                src="https://images.unsplash.com/photo-1576495199011-eb94736d05d6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1bml2ZXJzaXR5JTIwY2FtcHVzfGVufDF8fHx8MTc2NzA2NzI5OXww&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="Campus"
-                className="rounded-lg shadow-lg"
+                src="/About3.jpg"
+                alt="HoyoClub event 1"
+                className="absolute top-0 left-0 w-72 h-52 object-cover rounded-lg shadow-lg transform -rotate-6 z-10"
+              />
+              <ImageWithFallback
+                src="/about2.png"
+                alt="HoyoClub event 2"
+                className="absolute top-16 right-8 w-64 h-48 object-cover rounded-lg shadow-lg transform rotate-3 z-20"
+              />
+              <ImageWithFallback
+                src="/About1.jpg"
+                alt="HoyoClub event 3"
+                className="absolute bottom-32 left-12 w-68 h-56 object-cover rounded-lg shadow-lg transform rotate-6 z-30"
+              />
+              <ImageWithFallback
+                src="/About4.jpg"
+                alt="HoyoClub event 4"
+                className="absolute bottom-16 right-4 w-60 h-44 object-cover rounded-lg shadow-lg transform -rotate-3 z-40"
+              />
+              <ImageWithFallback
+                src="/About5.jpg"
+                alt="HoyoClub event 5"
+                className="absolute top-48 left-28 w-64 h-52 object-cover rounded-lg shadow-lg transform rotate-12 z-50"
               />
             </div>
             <div>
-              <h2 className="text-4xl mb-6 text-gray-900">Our Story</h2>
+              <h2 className="text-4xl mb-6 text-gray-900">Our Founding</h2>
               <p className="text-gray-600 mb-4">
-                Founded in 2020, our club started with a small group of passionate students who wanted to create a space for learning, innovation, and collaboration. Today, we've grown into a vibrant community of over 200 members.
+                Our club started as a idea in April of 2025, when our founder Mashal realized that there didn't exist a community for gacha enthusiasts at the University of Toronto. Since then, the idea of HoyoClub grew as the foundation was established to bring together like-minded students. Since September 2025, Hoyoverse Club has grown from a team of 6 students to a 25 large team, and over 300 members of the club. 
               </p>
               <p className="text-gray-600">
-                We believe in the power of collective learning and hands-on experience. Through workshops, hackathons, research projects, and networking events, we provide our members with opportunities to grow both personally and professionally.
+                In Hoyoverse Club, we believe in having fun. Hoyoclub is a for fun club that gives students a community to interact with others who share the same passion for gacha games. We host a variety of events, both online and in-person, to bring our members together and create lasting memories. Check out our photos page to see some of the fun we've had so far!
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                <Target className="text-blue-600" size={24} />
-              </div>
-              <h3 className="text-xl mb-3 text-gray-900">Our Mission</h3>
-              <p className="text-gray-600">
-                To empower students through education, collaboration, and innovation, preparing them for success in their academic and professional journeys.
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                <Eye className="text-blue-600" size={24} />
-              </div>
-              <h3 className="text-xl mb-3 text-gray-900">Our Vision</h3>
-              <p className="text-gray-600">
-                To be the premier student organization that bridges the gap between academic learning and real-world application, fostering leaders of tomorrow.
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                <Award className="text-blue-600" size={24} />
-              </div>
-              <h3 className="text-xl mb-3 text-gray-900">Our Values</h3>
-              <p className="text-gray-600">
-                Excellence, integrity, collaboration, and continuous learning are at the heart of everything we do.
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -77,36 +67,64 @@ export function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl mb-4 text-gray-900">What We Do</h2>
-            <p className="text-xl text-gray-600">Supporting our members in multiple ways</p>
+            <p className="text-xl text-gray-600">Having fun and more fun!</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white p-6 rounded-lg">
-              <h3 className="text-xl mb-3 text-gray-900">Technical Workshops</h3>
-              <p className="text-gray-600">
-                Regular workshops on cutting-edge technologies, programming languages, and industry best practices led by experts and alumni.
-              </p>
+            <div className="bg-white rounded-lg overflow-hidden shadow-sm">
+              <ImageWithFallback
+                src="/Pulling Party.png"
+                alt="Pulling Party event"
+                className="w-full h-96 object-cover"
+              />
+              <div className="p-6">
+                <h3 className="text-xl mb-3 text-gray-900">Pulling Parties!</h3>
+                <p className="text-gray-600">
+                  Regular pulling parties online or inperson where members can gather to stream their pulls to the whole club!
+                </p>
+              </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg">
-              <h3 className="text-xl mb-3 text-gray-900">Research Support</h3>
-              <p className="text-gray-600">
-                Mentorship and resources for students interested in academic research and publishing papers.
-              </p>
+            <div className="bg-white rounded-lg overflow-hidden shadow-sm">
+              <ImageWithFallback
+                src="/workshop.jpg"
+                alt="Workshop event"
+                className="w-full h-96 object-cover"
+              />
+              <div className="p-6">
+                <h3 className="text-xl mb-3 text-gray-900">Workshops!</h3>
+                <p className="text-gray-600">
+                  Hosting various workshops about game strategies, cosplaying, arts, etc. to help members find a sense of community. 
+                </p>
+              </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg">
-              <h3 className="text-xl mb-3 text-gray-900">Networking Events</h3>
-              <p className="text-gray-600">
-                Connect with industry professionals, alumni, and fellow students through our regular networking sessions.
-              </p>
+            <div className="bg-white rounded-lg overflow-hidden shadow-sm">
+              <ImageWithFallback
+                src="/field trips.jpg"
+                alt="Field trips event"
+                className="w-full h-96 object-cover"
+              />
+              <div className="p-6">
+                <h3 className="text-xl mb-3 text-gray-900">Field Trips!</h3>
+                <p className="text-gray-600">
+                  Our clubs hosts trips for upcoming anime conventions, food spots, and other exciting locations!
+                </p>
+              </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg">
-              <h3 className="text-xl mb-3 text-gray-900">Competitions & Hackathons</h3>
-              <p className="text-gray-600">
-                Participate in and organize hackathons, coding competitions, and project showcases.
-              </p>
+            <div className="bg-white rounded-lg overflow-hidden shadow-sm">
+              <ImageWithFallback
+                src="/more.jpg"
+                alt="More activities"
+                className="w-full h-96 object-cover"
+              />
+              <div className="p-6">
+                <h3 className="text-xl mb-3 text-gray-900">And so MUCH MORE!</h3>
+                <p className="text-gray-600">
+                  Join our Discord to stay updated on all the fun events we have planned throughout the year, including competitions with prizes, conventions, and social hangouts!
+                </p>
+              </div>
             </div>
           </div>
         </div>
