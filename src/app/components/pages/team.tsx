@@ -32,34 +32,34 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: 2,
-    name: 'Michael Chen',
+    name: 'Daniel Tung',
     role: 'Vice President',
-    bio: 'Engineering student focused on innovation and hands-on learning experiences.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400',
-    email: 'michael@clubname.com',
+    bio: 'I am rich as fuck',
+    image: '/Daniel.png',
+    email: '',
     linkedin: '#',
     type: 'exec',
   },
   {
     id: 3,
-    name: 'Emily Rodriguez',
-    role: 'Events Coordinator',
-    bio: 'Organizing engaging events that bring our community together.',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400',
-    email: 'emily@clubname.com',
+    name: 'Aaron Li',
+    role: 'Vice President of Internal Affairs, Vice President of Web Development',
+    bio: 'Hi all! My name is Aaron, and I am one of the 5 original Execs of this club. I have lost 80% of my 50/50s across the 3 main hoyoverse games, and I used to be the number one chatter in the discord server. Other than that, I have a top 1% Flins and Arlechinno. Nice to meet all of you :). ',
+    image: '/Aaron.png',
+    email: '',
     linkedin: '#',
     twitter: '#',
     type: 'exec',
   },
   {
     id: 4,
-    name: 'David Park',
-    role: 'Technical Lead',
-    campus: 'St. George',
-    study: 'Computer Science',
-    year: '3rd Year',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400',
-    email: 'david@clubname.com',
+    name: 'Aaron Li',
+    role: 'Tech Associate',
+    campus: 'Mississauga',
+    study: 'Computer Science, Statistics',
+    year: '4th Year',
+    image: '/Aaron.png',
+    email: '',
     linkedin: '#',
     type: 'associate',
   },
@@ -102,7 +102,7 @@ export function Team() {
           backgroundRepeat: 'no-repeat',
         }}
       >
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/40" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="text-5xl mb-6">Our Team</h1>
@@ -114,53 +114,29 @@ export function Team() {
       </section>
 
       {/* Team Grid */}
-      <section className="py-20">
+      <section className="py-20" style={{ backgroundColor: '#1d3557' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Executive Team */}
           <div className="mb-16">
-            <h2 className="text-4xl mb-8 text-gray-900 text-center">Executive Team</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <h2 className="text-4xl mb-8 text-center" style={{ color: '#a8dadc' }}>Executive Team</h2>
+            <div className="space-y-6">
               {teamMembers.filter(member => member.type === 'exec').map((member) => (
                 <div
                   key={member.id}
-                  className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-200 overflow-hidden"
+                  className="rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden flex flex-col md:flex-row"
+                  style={{ backgroundColor: '#006494' }}
                 >
-                  <div className="aspect-square bg-gray-200 overflow-hidden">
+                  <div className="md:w-64 md:h-64 w-full h-48 flex-shrink-0 overflow-hidden" style={{ backgroundColor: '#1d3557' }}>
                     <ImageWithFallback
                       src={member.image}
                       alt={member.name}
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl mb-1 text-gray-900">{member.name}</h3>
-                    <p className="text-blue-600 mb-3">{member.role}</p>
-                    <p className="text-gray-600 mb-4">{member.bio}</p>
-
-                    <div className="flex gap-3">
-                      <a
-                        href={`mailto:${member.email}`}
-                        className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors text-gray-700"
-                      >
-                        <Mail size={18} />
-                      </a>
-                      {member.linkedin && (
-                        <a
-                          href={member.linkedin}
-                          className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors text-gray-700"
-                        >
-                          <Linkedin size={18} />
-                        </a>
-                      )}
-                      {member.twitter && (
-                        <a
-                          href={member.twitter}
-                          className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors text-gray-700"
-                        >
-                          <Twitter size={18} />
-                        </a>
-                      )}
-                    </div>
+                  <div className="p-6 flex-1">
+                    <h3 className="text-2xl mb-1 text-white">{member.name}</h3>
+                    <p className="mb-3 text-lg" style={{ color: '#a8dadc' }}>{member.role}</p>
+                    <p style={{ color: '#a8dadc' }}>{member.bio}</p>
                   </div>
                 </div>
               ))}
@@ -169,14 +145,15 @@ export function Team() {
 
           {/* Associates */}
           <div>
-            <h2 className="text-4xl mb-8 text-gray-900 text-center">Associates</h2>
+            <h2 className="text-4xl mb-8 text-center" style={{ color: '#a8dadc' }}>Associates</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {teamMembers.filter(member => member.type === 'associate').map((member) => (
                 <div
                   key={member.id}
-                  className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-200 overflow-hidden"
+                  className="rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden"
+                  style={{ backgroundColor: '#006494' }}
                 >
-                  <div className="aspect-square bg-gray-200 overflow-hidden">
+                  <div className="aspect-square overflow-hidden" style={{ backgroundColor: '#1d3557' }}>
                     <ImageWithFallback
                       src={member.image}
                       alt={member.name}
@@ -184,49 +161,24 @@ export function Team() {
                     />
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl mb-1 text-gray-900">{member.name}</h3>
-                    <p className="text-blue-600 mb-3">{member.role}</p>
+                    <h3 className="text-xl mb-1 text-white">{member.name}</h3>
+                    <p className="mb-3" style={{ color: '#a8dadc' }}>{member.role}</p>
                     
                     <div className="space-y-1 mb-4">
                       {member.campus && (
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm" style={{ color: '#a8dadc' }}>
                           <span className="font-semibold">Campus:</span> {member.campus}
                         </p>
                       )}
                       {member.study && (
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm" style={{ color: '#a8dadc' }}>
                           <span className="font-semibold">Study:</span> {member.study}
                         </p>
                       )}
                       {member.year && (
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm" style={{ color: '#a8dadc' }}>
                           <span className="font-semibold">Year:</span> {member.year}
                         </p>
-                      )}
-                    </div>
-
-                    <div className="flex gap-3">
-                      <a
-                        href={`mailto:${member.email}`}
-                        className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors text-gray-700"
-                      >
-                        <Mail size={18} />
-                      </a>
-                      {member.linkedin && (
-                        <a
-                          href={member.linkedin}
-                          className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors text-gray-700"
-                        >
-                          <Linkedin size={18} />
-                        </a>
-                      )}
-                      {member.twitter && (
-                        <a
-                          href={member.twitter}
-                          className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors text-gray-700"
-                        >
-                          <Twitter size={18} />
-                        </a>
                       )}
                     </div>
                   </div>
@@ -238,15 +190,16 @@ export function Team() {
       </section>
 
       {/* Join Team CTA */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20" style={{ backgroundColor: '#1d3557' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl mb-4 text-gray-900">Want to Join Our Team?</h2>
-          <p className="text-xl text-gray-600 mb-8">
+          <h2 className="text-4xl mb-4" style={{ color: '#a8dadc' }}>Want to Join Our Team?</h2>
+          <p className="text-xl mb-8" style={{ color: '#a8dadc' }}>
             We're always looking for passionate individuals to help us grow our community. Applications open at the beginning of each semester.
           </p>
           <a
             href="/join"
-            className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors inline-block"
+            className="text-white px-8 py-3 rounded-lg transition-colors inline-block"
+            style={{ backgroundColor: '#006494' }}
           >
             Learn More
           </a>
