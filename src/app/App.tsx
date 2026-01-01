@@ -10,6 +10,7 @@ import { Photos } from './components/pages/photos';
 import { AlbumDetail } from './components/pages/album-detail';
 import { PhotosAdmin } from './components/pages/photos-admin';
 import { Social } from './components/pages/social';
+import { ProtectedRoute } from './components/auth/ProtectedRoute';
 
 export default function App() {
   return (
@@ -25,7 +26,14 @@ export default function App() {
             {/* <Route path="/join" element={<Join />} /> */}
             <Route path="/photos" element={<Photos />} />
             <Route path="/photos/:id" element={<AlbumDetail />} />
-            <Route path="/photos_admin" element={<PhotosAdmin />} />
+            <Route
+              path="/photos_admin"
+              element={
+                <ProtectedRoute>
+                  <PhotosAdmin />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/social" element={<Social />} />
           </Routes>
         </main>
