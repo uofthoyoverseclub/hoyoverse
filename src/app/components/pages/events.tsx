@@ -26,8 +26,15 @@ export function Events() {
   useEffect(() => {
     fetchDiscordEvents()
       .then((discordEvents) => {
+        const now = Date.now();
         const mappedEvents: Event[] = discordEvents.map((e) => {
           const start = new Date(e.scheduled_start_time);
+          const end = e.scheduled_end_time ? new Date(e.scheduled_end_time) : null;
+          
+          // Determine if event is past based on actual time
+          // Use end time if available, otherwise use start time
+          const eventEndTime = end ? end.getTime() : start.getTime();
+          const isPast = eventEndTime < now;
 
           return {
             id: Number(e.id),
@@ -47,7 +54,7 @@ export function Events() {
               ? `https://cdn.discordapp.com/guild-events/${e.id}/${e.image}.png?size=1024`
               : '/logo.png',
             attendees: 0, // Discord does not expose attendee counts
-            type: e.status === 1 ? 'upcoming' : 'past',
+            type: isPast ? 'past' : 'upcoming',
             category: 'Event',
             startTime: start.getTime(),
           };
