@@ -49,7 +49,7 @@ export function Events() {
               hour: '2-digit',
               minute: '2-digit',
             }),
-            location: e.entity_metadata?.location || 'Discord',
+            location: e.location || 'Discord',
             image: e.image
               ? `https://cdn.discordapp.com/guild-events/${e.id}/${e.image}.png?size=1024`
               : '/logo.png',

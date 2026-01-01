@@ -5,9 +5,7 @@ export interface DiscordEvent {
   scheduled_start_time: string;
   scheduled_end_time: string | null;
   status: number;
-  entity_metadata?: {
-    location?: string;
-  };
+  location?: string;
   image?: string;
 }
 
