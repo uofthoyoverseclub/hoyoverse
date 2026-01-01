@@ -120,7 +120,7 @@ export function AlbumDetail() {
                 <div
                   key={photo.id}
                   onClick={() => setSelectedPhoto(photo)}
-                  className="aspect-square cursor-pointer rounded-lg overflow-hidden hover:opacity-90 transition-opacity"
+                  className="aspect-video cursor-pointer rounded-lg overflow-hidden hover:opacity-90 transition-opacity"
                   style={{ backgroundColor: '#006494' }}
                 >
                   <GoogleDriveImage
