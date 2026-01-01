@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, User, Download } from 'lucide-react';
-import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { GoogleDriveImage } from '../figma/GoogleDriveImage';
 
 interface Album {
   id: number;
@@ -123,7 +123,7 @@ export function AlbumDetail() {
                   className="aspect-square cursor-pointer rounded-lg overflow-hidden hover:opacity-90 transition-opacity"
                   style={{ backgroundColor: '#006494' }}
                 >
-                  <ImageWithFallback
+                  <GoogleDriveImage
                     src={photo.image_url}
                     alt={photo.caption || album.title}
                     className="w-full h-full object-cover"

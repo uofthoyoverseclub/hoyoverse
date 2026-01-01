@@ -23,16 +23,22 @@ export function extractFolderId(url) {
 
 /**
  * Convert individual Google Drive file URL to direct image URL
+ * Handles all Google Drive URL formats and normalizes them to uc?export=view
  */
 export function convertGoogleDriveUrl(url) {
   if (!url || !url.includes('drive.google.com')) {
     return url;
   }
   
+  // If already in the correct format, return as-is
+  if (url.includes('uc?export=view&id=')) {
+    return url;
+  }
+  
   // Extract file ID from various Google Drive URL formats
   const patterns = [
     /\/file\/d\/([a-zA-Z0-9_-]+)/, // /file/d/ID/view
-    /id=([a-zA-Z0-9_-]+)/, // ?id=ID or ?id=ID&...
+    /[?&]id=([a-zA-Z0-9_-]+)/, // ?id=ID or &id=ID (covers thumbnail URLs too)
     /\/d\/([a-zA-Z0-9_-]+)/, // /d/ID
   ];
   
@@ -129,34 +135,62 @@ export async function getPublicFolderFiles(folderId, apiKey) {
     throw new Error('Google Drive API key is required');
   }
   
+  let allFiles = [];
+  let pageToken = null;
+  let pageCount = 0;
+  
   try {
-    const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&key=${apiKey}&fields=files(id,name,mimeType,webContentLink,thumbnailLink,webViewLink)`;
+    do {
+      // Build URL with pagination
+      let url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&key=${apiKey}&fields=nextPageToken,files(id,name,mimeType,webContentLink,thumbnailLink,webViewLink)&pageSize=1000`;
+      
+      if (pageToken) {
+        url += `&pageToken=${pageToken}`;
+      }
+      
+      const response = await fetch(url);
+      
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error?.message || 'Failed to fetch folder files from Google Drive API');
+      }
+      
+      const data = await response.json();
+      
+      // Add files from this page
+      if (data.files && data.files.length > 0) {
+        allFiles = allFiles.concat(data.files);
+      }
+      
+      // Get next page token
+      pageToken = data.nextPageToken || null;
+      pageCount++;
+      
+      // Add delay between pages to avoid rate limiting (max 10 requests per second)
+      // Wait 150ms between API calls to stay well under the limit
+      if (pageToken) {
+        await new Promise(resolve => setTimeout(resolve, 150));
+      }
+      
+    } while (pageToken); // Continue while there are more pages
     
-    const response = await fetch(url);
-    
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.error?.message || 'Failed to fetch folder files from Google Drive API');
-    }
-    
-    const data = await response.json();
-    
-    if (!data.files || data.files.length === 0) {
+    if (allFiles.length === 0) {
       throw new Error('No files found in folder. Make sure the folder is publicly shared.');
     }
     
     // Filter for image files and convert to direct URLs
-    const imageFiles = data.files
+    const imageFiles = allFiles
       .filter(file => file.mimeType && file.mimeType.startsWith('image/'))
       .map(file => ({
         id: file.id,
         name: file.name,
-        // Use thumbnail API which is more reliable for public access
-        url: `https://drive.google.com/thumbnail?id=${file.id}&sz=w1000`,
+        // Use uc?export=view as primary - most reliable for public files
+        url: `https://drive.google.com/uc?export=view&id=${file.id}`,
         directUrl: `https://drive.google.com/uc?export=view&id=${file.id}`,
-        thumbnailUrl: file.thumbnailLink || `https://drive.google.com/thumbnail?id=${file.id}&sz=w400`
+        thumbnailUrl: `https://drive.google.com/thumbnail?id=${file.id}&sz=w1000`
       }));
     
+    console.log(`Fetched ${imageFiles.length} images from folder in ${pageCount} API call(s) (${allFiles.length} total files)`);
     return imageFiles;
   } catch (error) {
     console.error('Error fetching public folder files:', error);

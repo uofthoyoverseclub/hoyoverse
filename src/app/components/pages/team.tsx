@@ -242,6 +242,18 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: 19,
+    name: 'Yung-Chi Liu',
+    role: 'Videographer/Photographer Associate',
+    campus: 'St. George',
+    study: 'Architectural Design',
+    year: '3rd Year',
+    image: '/Melody.jpg',
+    email: '#',
+    linkedin: '#',
+    type: 'associate',
+  },
+  {
+    id: 20,
     name: 'Kayla C',
     role: 'Social Media Associate',
     campus: 'Mississauga',

@@ -1,6 +1,6 @@
 import { Camera, Calendar, User, ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { GoogleDriveImage } from '../figma/GoogleDriveImage';
 import { Link } from 'react-router-dom';
 
 interface Album {
@@ -74,7 +74,7 @@ export function Photos() {
                   style={{ backgroundColor: '#006494' }}
                 >
                   <div className="aspect-video relative overflow-hidden">
-                    <ImageWithFallback
+                    <GoogleDriveImage
                       src={album.cover_photo || '/logo.png'}
                       alt={album.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"

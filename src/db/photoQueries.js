@@ -1,4 +1,5 @@
 import { db } from './photoSchema.js';
+import { convertGoogleDriveUrl } from '../utils/googleDrive.js';
 
 // Album operations
 export function createAlbum(title, description, date, photographer, googleDriveFolderUrl = null, coverPhoto = null) {
@@ -7,7 +8,10 @@ export function createAlbum(title, description, date, photographer, googleDriveF
     VALUES (?, ?, ?, ?, ?, ?)
   `);
   
-  const result = stmt.run(title, description, date, photographer, googleDriveFolderUrl, coverPhoto);
+  // Normalize cover photo URL if it's a Google Drive link
+  const normalizedCoverPhoto = coverPhoto ? convertGoogleDriveUrl(coverPhoto) : null;
+  
+  const result = stmt.run(title, description, date, photographer, googleDriveFolderUrl, normalizedCoverPhoto);
   return result.lastInsertRowid;
 }
 
@@ -57,7 +61,10 @@ export function addPhotoToAlbum(albumId, imageUrl, caption, displayOrder = 0) {
     VALUES (?, ?, ?, ?)
   `);
   
-  const result = stmt.run(albumId, imageUrl, caption, displayOrder);
+  // Normalize Google Drive URLs to prevent thumbnail format issues
+  const normalizedUrl = convertGoogleDriveUrl(imageUrl);
+  
+  const result = stmt.run(albumId, normalizedUrl, caption, displayOrder);
   
   // Update album photo count
   updatePhotoCount(albumId);
@@ -83,7 +90,10 @@ export function setCoverPhoto(albumId, coverPhotoUrl) {
     WHERE id = ?
   `);
   
-  return stmt.run(coverPhotoUrl, albumId);
+  // Normalize cover photo URL if it's a Google Drive link
+  const normalizedUrl = convertGoogleDriveUrl(coverPhotoUrl);
+  
+  return stmt.run(normalizedUrl, albumId);
 }
 
 export function deletePhoto(photoId) {
@@ -117,7 +127,9 @@ export function bulkAddPhotos(albumId, photos) {
   
   const transaction = db.transaction((photosArray) => {
     for (const photo of photosArray) {
-      insert.run(albumId, photo.imageUrl, photo.caption || null, photo.displayOrder || 0);
+      // Normalize Google Drive URLs to prevent thumbnail format issues
+      const normalizedUrl = convertGoogleDriveUrl(photo.imageUrl);
+      insert.run(albumId, normalizedUrl, photo.caption || null, photo.displayOrder || 0);
     }
   });
   

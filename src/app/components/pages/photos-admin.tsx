@@ -23,10 +23,13 @@ export function PhotosAdmin() {
     // If already converted or not a Google Drive URL, return as-is
     if (!url.includes('drive.google.com')) return url;
     
+    // If already in the correct format, return as-is
+    if (url.includes('uc?export=view&id=')) return url;
+    
     // Extract file ID from various Google Drive URL formats
     const patterns = [
       /\/file\/d\/([a-zA-Z0-9_-]+)/, // /file/d/ID/view
-      /id=([a-zA-Z0-9_-]+)/, // ?id=ID or ?id=ID&...
+      /[?&]id=([a-zA-Z0-9_-]+)/, // ?id=ID or &id=ID (covers thumbnail URLs too)
       /\/d\/([a-zA-Z0-9_-]+)/, // /d/ID
     ];
     
@@ -70,9 +73,9 @@ export function PhotosAdmin() {
         return;
       }
 
-      // Convert files to photo upload format
+      // Convert files to photo upload format and normalize URLs
       const newPhotos = data.files.map((file: any, index: number) => ({
-        imageUrl: file.url,
+        imageUrl: convertGoogleDriveUrl(file.url),
         caption: '',
         displayOrder: index
       }));

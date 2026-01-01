@@ -39,6 +39,8 @@ GOOGLE_DRIVE_API_KEY=your_api_key_here
    - Create a folder in Google Drive
    - Upload all your event photos to this folder
    - **Important**: Right-click the folder → Share → Change to "Anyone with the link can view"
+   - **Critical**: After sharing the folder, open it and select all files (Ctrl+A), right-click → Share, and ensure they also say "Anyone with the link can view" - folder permissions don't always cascade to files
+   - Alternatively, use "Anyone on the internet with this link can view" for more reliable access
 
 2. **Go to Photos Admin Page** (`/photos-admin`):
    - Fill in album details (title, description, date, photographer)
