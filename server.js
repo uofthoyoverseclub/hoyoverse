@@ -112,13 +112,23 @@ app.post('/api/albums', async (req, res) => {
       return res.status(400).json({ error: 'Missing required fields' });
     }
     
+    // Convert cover photo to thumbnail format for better loading
+    let finalCoverPhoto = coverPhoto;
+    if (coverPhoto && coverPhoto.includes('drive.google.com')) {
+      const fileIdMatch = coverPhoto.match(/[?&]id=([a-zA-Z0-9_-]+)|\/d\/([a-zA-Z0-9_-]+)/);
+      if (fileIdMatch) {
+        const fileId = fileIdMatch[1] || fileIdMatch[2];
+        finalCoverPhoto = `https://drive.google.com/thumbnail?id=${fileId}&sz=w1000`;
+      }
+    }
+    
     const albumId = createAlbum(
       title, 
       description, 
       date, 
       photographer || null,
       googleDriveFolderUrl || null,
-      coverPhoto || null
+      finalCoverPhoto || null
     );
     
     res.json({ id: albumId, message: 'Album created successfully' });
@@ -143,7 +153,16 @@ app.post('/api/albums/:id/photos', async (req, res) => {
     // Set first photo as cover if not already set
     const album = getAlbumById(albumId);
     if (!album.cover_photo && photos.length > 0) {
-      setCoverPhoto(albumId, photos[0].imageUrl);
+      // Convert first photo URL to thumbnail format for better loading
+      let coverUrl = photos[0].imageUrl;
+      if (coverUrl && coverUrl.includes('drive.google.com')) {
+        const fileIdMatch = coverUrl.match(/[?&]id=([a-zA-Z0-9_-]+)|\/d\/([a-zA-Z0-9_-]+)/);
+        if (fileIdMatch) {
+          const fileId = fileIdMatch[1] || fileIdMatch[2];
+          coverUrl = `https://drive.google.com/thumbnail?id=${fileId}&sz=w1000`;
+        }
+      }
+      setCoverPhoto(albumId, coverUrl);
     }
     
     res.json({ message: 'Photos added successfully' });
