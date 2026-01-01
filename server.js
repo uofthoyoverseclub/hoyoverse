@@ -4,16 +4,28 @@ import dotenv from 'dotenv';
 import { initializeDatabase } from './src/db/schema.js';
 import { getAllEvents, getUpcomingEvents, getPastEvents, getSyncStats } from './src/db/queries.js';
 import { startSyncSchedule, handleManualSync } from './src/jobs/syncEvents.js';
+import { initializePhotoDatabase } from './src/db/photoSchema.js';
+import { 
+  createAlbum, 
+  getAllAlbums, 
+  getAlbumById, 
+  bulkAddPhotos, 
+  getAlbumPhotos,
+  setCoverPhoto
+} from './src/db/photoQueries.js';
+import { getPublicFolderFiles, extractFolderId } from './src/utils/googleDrive.js';
 
 dotenv.config();
 
-// Initialize database
+// Initialize databases
 initializeDatabase();
+initializePhotoDatabase();
 
 // Start automatic sync every 15 minutes
 startSyncSchedule(15);
 
 const app = express();
+app.use(express.json());
 
 // Get all events from database
 app.get('/api/discord-events', async (req, res) => {
@@ -50,6 +62,131 @@ app.get('/api/sync-stats', (req, res) => {
   } catch (error) {
     console.error('Error fetching sync stats:', error);
     res.status(500).json({ error: 'Failed to fetch sync stats' });
+  }
+});
+
+// ===== PHOTO ALBUM ENDPOINTS =====
+
+// Get all albums
+app.get('/api/albums', (req, res) => {
+  try {
+    const albums = getAllAlbums();
+    res.json(albums.map(album => ({
+      ...album,
+      cover_image: album.cover_photo || '/logo.png'
+    })));
+  } catch (error) {
+    console.error('Error fetching albums:', error);
+    res.status(500).json({ error: 'Failed to fetch albums' });
+  }
+});
+
+// Get album by ID with photos
+app.get('/api/albums/:id', (req, res) => {
+  try {
+    const albumId = parseInt(req.params.id);
+    const album = getAlbumById(albumId);
+    
+    if (!album) {
+      return res.status(404).json({ error: 'Album not found' });
+    }
+    
+    const photos = getAlbumPhotos(albumId);
+    
+    res.json({
+      ...album,
+      photos
+    });
+  } catch (error) {
+    console.error('Error fetching album:', error);
+    res.status(500).json({ error: 'Failed to fetch album' });
+  }
+});
+
+// Create new album
+app.post('/api/albums', async (req, res) => {
+  try {
+    const { title, description, date, photographer, coverPhoto, googleDriveFolderUrl } = req.body;
+    
+    if (!title || !description || !date) {
+      return res.status(400).json({ error: 'Missing required fields' });
+    }
+    
+    const albumId = createAlbum(
+      title, 
+      description, 
+      date, 
+      photographer || null,
+      googleDriveFolderUrl || null,
+      coverPhoto || null
+    );
+    
+    res.json({ id: albumId, message: 'Album created successfully' });
+  } catch (error) {
+    console.error('Error creating album:', error);
+    res.status(500).json({ error: 'Failed to create album' });
+  }
+});
+
+// Add photos to album (bulk or individual)
+app.post('/api/albums/:id/photos', async (req, res) => {
+  try {
+    const albumId = parseInt(req.params.id);
+    const { photos } = req.body;
+    
+    if (!photos || !Array.isArray(photos)) {
+      return res.status(400).json({ error: 'Photos array is required' });
+    }
+    
+    bulkAddPhotos(albumId, photos);
+    
+    // Set first photo as cover if not already set
+    const album = getAlbumById(albumId);
+    if (!album.cover_photo && photos.length > 0) {
+      setCoverPhoto(albumId, photos[0].imageUrl);
+    }
+    
+    res.json({ message: 'Photos added successfully' });
+  } catch (error) {
+    console.error('Error adding photos:', error);
+    res.status(500).json({ error: 'Failed to add photos' });
+  }
+});
+
+// Fetch images from Google Drive folder
+app.post('/api/albums/fetch-drive-folder', async (req, res) => {
+  try {
+    const { folderUrl } = req.body;
+    
+    if (!folderUrl) {
+      return res.status(400).json({ error: 'Folder URL is required' });
+    }
+    
+    const apiKey = process.env.GOOGLE_DRIVE_API_KEY;
+    
+    if (!apiKey) {
+      return res.status(500).json({ 
+        error: 'Google Drive API key not configured. Please add GOOGLE_DRIVE_API_KEY to your .env file.' 
+      });
+    }
+    
+    const folderId = extractFolderId(folderUrl);
+    
+    if (!folderId) {
+      return res.status(400).json({ error: 'Invalid Google Drive folder URL' });
+    }
+    
+    const files = await getPublicFolderFiles(folderId, apiKey);
+    
+    res.json({
+      files,
+      count: files.length
+    });
+  } catch (error) {
+    console.error('Error fetching Drive folder:', error);
+    res.status(500).json({ 
+      error: error.message || 'Failed to fetch folder images' 
+    });
   }
 });
 
