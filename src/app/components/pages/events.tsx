@@ -44,7 +44,7 @@ export function Events() {
             }),
             location: e.entity_metadata?.location || 'Discord',
             image: e.image
-              ? `https://cdn.discordapp.com/guild-events/${e.id}/${e.image}.png`
+              ? `https://cdn.discordapp.com/guild-events/${e.id}/${e.image}.png?size=1024`
               : '/logo.png',
             attendees: 0, // Discord does not expose attendee counts
             type: e.status === 1 ? 'upcoming' : 'past',
@@ -137,22 +137,11 @@ export function Events() {
                     />
 
                     <div className="p-6">
-                      <div className="flex items-center gap-2 mb-3">
-                        <span className="px-3 py-1 bg-blue-100 text-blue-600 text-sm rounded-full">
-                          {event.category}
-                        </span>
-                        {event.type === 'upcoming' && (
-                          <span className="px-3 py-1 bg-green-100 text-green-600 text-sm rounded-full">
-                            Upcoming
-                          </span>
-                        )}
-                      </div>
-
                       <h3 className="text-xl mb-3 text-white">
                         {event.title}
                       </h3>
 
-                      <p className="mb-4 line-clamp-2" style={{ color: '#a8dadc' }}>
+                      <p className="mb-4 break-words" style={{ color: '#a8dadc' }}>
                         {event.description}
                       </p>
 

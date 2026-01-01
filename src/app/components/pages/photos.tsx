@@ -99,11 +99,11 @@ export function Photos() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20">
+      <section className="text-white py-20" style={{ backgroundColor: '#1d3557' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="text-5xl mb-6">Photo Gallery</h1>
-            <p className="text-xl text-blue-100">
+            <p className="text-xl" style={{ color: '#a8dadc' }}>
               Explore memories from our events, gaming sessions, and community gatherings.
             </p>
           </div>
@@ -111,7 +111,7 @@ export function Photos() {
       </section>
 
       {/* Photo Gallery */}
-      <section className="py-20">
+      <section className="py-20" style={{ backgroundColor: '#1d3557' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Category Filter */}
           <div className="flex flex-wrap gap-3 mb-12">
@@ -121,9 +121,10 @@ export function Photos() {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-4 py-2 rounded-lg transition-colors ${
                   selectedCategory === category
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'text-white'
+                    : 'text-white'
                 }`}
+                style={{ backgroundColor: selectedCategory === category ? '#006494' : '#1d3557' }}
               >
                 {category}
               </button>
@@ -135,7 +136,8 @@ export function Photos() {
             {filteredPhotos.map((photo) => (
               <div
                 key={photo.id}
-                className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-200 group"
+                className="rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden group"
+                style={{ backgroundColor: '#006494' }}
               >
                 <div className="aspect-video relative overflow-hidden">
                   <ImageWithFallback
@@ -144,18 +146,18 @@ export function Photos() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute top-3 right-3">
-                    <span className="px-3 py-1 bg-blue-600 text-white rounded-full text-xs">
+                    <span className="px-3 py-1 text-white rounded-full text-xs" style={{ backgroundColor: '#1d3557' }}>
                       {photo.category}
                     </span>
                   </div>
                 </div>
                 <div className="p-5">
-                  <h3 className="text-xl mb-2 text-gray-900">{photo.title}</h3>
-                  <div className="flex items-center gap-2 text-sm text-gray-600 mb-3">
+                  <h3 className="text-xl mb-2 text-white">{photo.title}</h3>
+                  <div className="flex items-center gap-2 text-sm mb-3" style={{ color: '#a8dadc' }}>
                     <Calendar size={16} />
                     <span>{photo.date}</span>
                   </div>
-                  <p className="text-gray-600 text-sm">{photo.description}</p>
+                  <p className="text-sm" style={{ color: '#a8dadc' }}>{photo.description}</p>
                 </div>
               </div>
             ))}
@@ -163,7 +165,7 @@ export function Photos() {
 
           {filteredPhotos.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-gray-600 text-lg">
+              <p className="text-lg" style={{ color: '#a8dadc' }}>
                 No photos found in this category.
               </p>
             </div>
@@ -172,18 +174,19 @@ export function Photos() {
       </section>
 
       {/* Submit Photo CTA */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20" style={{ backgroundColor: '#1d3557' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Camera className="text-blue-600" size={32} />
+          <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: '#006494' }}>
+            <Camera className="text-white" size={32} />
           </div>
-          <h2 className="text-4xl mb-4 text-gray-900">Share Your Moments</h2>
-          <p className="text-xl text-gray-600 mb-8">
+          <h2 className="text-4xl mb-4" style={{ color: '#a8dadc' }}>Share Your Moments</h2>
+          <p className="text-xl mb-8" style={{ color: '#a8dadc' }}>
             Have photos from our events? We'd love to feature them in our gallery! Share your favorite moments with the community.
           </p>
           <a
             href="mailto:photos@hoyoclub.com"
-            className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors inline-block"
+            className="text-white px-8 py-3 rounded-lg transition-colors inline-block"
+            style={{ backgroundColor: '#006494' }}
           >
             Submit Your Photos
           </a>

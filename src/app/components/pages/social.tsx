@@ -49,7 +49,7 @@ export function Social() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative text-white py-32" style={{ backgroundImage: 'url(/Banner.png)', backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '400px' }}>
+      <section className="relative text-white py-32" style={{ backgroundImage: 'url(/socialbanner.jpg)', backgroundSize: 'cover', backgroundPosition: 'center 40%', minHeight: '400px' }}>
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-5xl mb-6">Connect With Us</h1>
@@ -60,7 +60,7 @@ export function Social() {
       </section>
 
       {/* Social Media Links */}
-      <section className="py-20">
+      <section className="py-20" style={{ backgroundColor: '#1d3557' }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {socials.map((social) => {
@@ -71,19 +71,20 @@ export function Social() {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-200"
+                  className="group rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
+                  style={{ backgroundColor: '#006494' }}
                 >
                   <div className="p-8">
                     <div className="flex items-center gap-4 mb-4">
                       <div className={`w-16 h-16 ${social.color} rounded-lg flex items-center justify-center transition-colors`}>
                         <IconComponent size={32} className="text-white" />
                       </div>
-                      <h3 className="text-2xl font-semibold text-gray-900">{social.name}</h3>
+                      <h3 className="text-2xl font-semibold text-white">{social.name}</h3>
                     </div>
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="leading-relaxed" style={{ color: '#a8dadc' }}>
                       {social.description}
                     </p>
-                    <div className="mt-4 text-blue-600 font-medium group-hover:text-blue-700 transition-colors">
+                    <div className="mt-4 font-medium transition-colors" style={{ color: '#a8dadc' }}>
                       Visit {social.name} →
                     </div>
                   </div>
@@ -95,15 +96,16 @@ export function Social() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20" style={{ backgroundColor: '#1d3557' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl mb-4 text-gray-900">Get In Touch</h2>
-          <p className="text-xl text-gray-600 mb-8">
+          <h2 className="text-4xl mb-4" style={{ color: '#a8dadc' }}>Get In Touch</h2>
+          <p className="text-xl mb-8" style={{ color: '#a8dadc' }}>
             Have questions or want to collaborate? Reach out to us via email!
           </p>
           <a
             href="mailto:uoft.hoyo@studentorg.utoronto.ca"
-            className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors text-lg"
+            className="inline-block text-white px-8 py-3 rounded-lg transition-colors text-lg"
+            style={{ backgroundColor: '#006494' }}
           >
             uoft.hoyo@studentorg.utoronto.ca
           </a>

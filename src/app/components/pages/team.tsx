@@ -264,6 +264,31 @@ const teamMembers: TeamMember[] = [
     linkedin: '#',
     type: 'associate',
   },
+  {
+    id: 21,
+    name: 'Troy Tu',
+    role: 'Photography Associate',
+    campus: 'St. George',
+    study: 'Physics',
+    year: '2nd Year',
+    image: '/Troy.jpg',
+    email: '#',
+    linkedin: '#',
+    type: 'associate',
+  },
+
+  {
+    id: 22,
+    name: 'Emma',
+    role: 'Photography Associate',
+    campus: 'Scarborough',
+    study: 'Sociology ',
+    year: '3rd Year',
+    image: '/Emma.png',
+    email: '#',
+    linkedin: '#',
+    type: 'associate',
+  },
 ];
 
 export function Team() {
