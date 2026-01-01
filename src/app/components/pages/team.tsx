@@ -21,11 +21,11 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
   {
     id: 1,
-    name: 'Sarah Johnson',
+    name: 'Mashal Nihal',
     role: 'President',
-    bio: 'Computer Science senior passionate about building inclusive tech communities.',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400',
-    email: 'sarah@clubname.com',
+    bio: "Supreme Leader, Yaoi Enjoyer, Aaron's Ragebait Victim, Kaveh Lover, Prey of Gacha, Edgy Anemo Teen Girl.",
+    image: '/Mashal.jpg',
+    email: '#',
     linkedin: '#',
     twitter: '#',
     type: 'exec',
