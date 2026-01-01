@@ -1,33 +1,55 @@
 import express from 'express';
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
+import { initializeDatabase } from './src/db/schema.js';
+import { getAllEvents, getUpcomingEvents, getPastEvents, getSyncStats } from './src/db/queries.js';
+import { startSyncSchedule, handleManualSync } from './src/jobs/syncEvents.js';
 
 dotenv.config();
 
+// Initialize database
+initializeDatabase();
+
+// Start automatic sync every 15 minutes
+startSyncSchedule(15);
+
 const app = express();
 
+// Get all events from database
 app.get('/api/discord-events', async (req, res) => {
   try {
-    const response = await fetch(
-      `https://discord.com/api/v10/guilds/${process.env.DISCORD_GUILD_ID}/scheduled-events`,
-      {
-        headers: {
-          Authorization: `Bot ${process.env.DISCORD_BOT_TOKEN}`,
-        },
-      }
-    );
+    const filter = req.query.filter || 'all';
+    let events;
 
-    if (!response.ok) {
-      return res.status(response.status).json({
-        error: 'Discord API error',
-      });
+    switch (filter) {
+      case 'upcoming':
+        events = getUpcomingEvents();
+        break;
+      case 'past':
+        events = getPastEvents();
+        break;
+      default:
+        events = getAllEvents();
     }
 
-    const data = await response.json();
-    res.json(data);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Failed to fetch Discord events' });
+    res.json(events);
+  } catch (error) {
+    console.error('Error fetching events from database:', error);
+    res.status(500).json({ error: 'Failed to fetch events from database' });
+  }
+});
+
+// Manual sync endpoint (for admin use)
+app.post('/api/sync-events', handleManualSync);
+
+// Get sync statistics
+app.get('/api/sync-stats', (req, res) => {
+  try {
+    const stats = getSyncStats();
+    res.json(stats);
+  } catch (error) {
+    console.error('Error fetching sync stats:', error);
+    res.status(500).json({ error: 'Failed to fetch sync stats' });
   }
 });
 

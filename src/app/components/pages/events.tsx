@@ -18,8 +18,8 @@ interface Event {
 }
 
 export function Events() {
-  const [events, setEvents] = useState<Event[]>([]);
-  // const [filter, setFilter] = useState<'all' | 'upcoming' | 'past'>('all');
+  const [upcomingEvents, setUpcomingEvents] = useState<Event[]>([]);
+  const [pastEvents, setPastEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -53,11 +53,17 @@ export function Events() {
           };
         });
 
-        setEvents(
-          mappedEvents
-            .filter(event => event.type === 'upcoming')
-            .sort((a, b) => a.startTime - b.startTime)
-        );
+        // Split events into upcoming and past, then sort
+        const upcoming = mappedEvents
+          .filter(event => event.type === 'upcoming')
+          .sort((a, b) => a.startTime - b.startTime); // soonest first
+
+        const past = mappedEvents
+          .filter(event => event.type === 'past')
+          .sort((a, b) => b.startTime - a.startTime); // most recent first
+
+        setUpcomingEvents(upcoming);
+        setPastEvents(past);
         setLoading(false);
       })
       .catch(() => {
@@ -66,9 +72,44 @@ export function Events() {
       });
   }, []);
 
-  // const filteredEvents = events
-  // .filter((event) => filter === 'all' || event.type === filter)
-  // .sort((a, b) => a.startTime - b.startTime);
+  const renderEventCard = (event: Event) => (
+    <div
+      key={event.id}
+      className="rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden"
+      style={{ backgroundColor: '#006494' }}
+    >
+      <ImageWithFallback
+        src={event.image}
+        alt={event.title}
+        className="w-full h-48 object-cover"
+      />
+
+      <div className="p-6">
+        <h3 className="text-xl mb-3 text-white">
+          {event.title}
+        </h3>
+
+        <p className="mb-4 break-words" style={{ color: '#a8dadc' }}>
+          {event.description}
+        </p>
+
+        <div className="space-y-2 mb-4">
+          <div className="flex items-center gap-2 text-sm" style={{ color: '#a8dadc' }}>
+            <Calendar size={16} />
+            <span>{event.date}</span>
+          </div>
+          <div className="flex items-center gap-2 text-sm" style={{ color: '#a8dadc' }}>
+            <Clock size={16} />
+            <span>{event.time}</span>
+          </div>
+          <div className="flex items-center gap-2 text-sm" style={{ color: '#a8dadc' }}>
+            <MapPin size={16} />
+            <span>{event.location}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div>
@@ -88,25 +129,6 @@ export function Events() {
       {/* Events List */}
       <section className="py-20" style={{ backgroundColor: '#1d3557' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Filter Buttons */}
-          {/* <div className="flex gap-4 mb-12">
-            {(['all', 'upcoming', 'past'] as const).map((key) => (
-              <button
-                key={key}
-                onClick={() => setFilter(key)}
-                className={`px-6 py-2 rounded-lg transition-colors ${
-                  filter === key
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                {key === 'all'
-                  ? 'All Events'
-                  : key.charAt(0).toUpperCase() + key.slice(1)}
-              </button>
-            ))}
-          </div> */}
-
           {/* Loading / Error */}
           {loading && (
             <p className="text-center py-20" style={{ color: '#a8dadc' }}>
@@ -120,71 +142,36 @@ export function Events() {
             </p>
           )}
 
-          {/* Events Grid */}
+          {/* Events Sections */}
           {!loading && !error && (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {events.map((event) => (
-                  <div
-                    key={event.id}
-                    className="rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden"
-                    style={{ backgroundColor: '#006494' }}
-                  >
-                    <ImageWithFallback
-                      src={event.image}
-                      alt={event.title}
-                      className="w-full h-48 object-cover"
-                    />
-
-                    <div className="p-6">
-                      <h3 className="text-xl mb-3 text-white">
-                        {event.title}
-                      </h3>
-
-                      <p className="mb-4 break-words" style={{ color: '#a8dadc' }}>
-                        {event.description}
-                      </p>
-
-                      <div className="space-y-2 mb-4">
-                        <div className="flex items-center gap-2 text-sm" style={{ color: '#a8dadc' }}>
-                          <Calendar size={16} />
-                          <span>{event.date}</span>
-                        </div>
-                        <div className="flex items-center gap-2 text-sm" style={{ color: '#a8dadc' }}>
-                          <Clock size={16} />
-                          <span>{event.time}</span>
-                        </div>
-                        <div className="flex items-center gap-2 text-sm" style={{ color: '#a8dadc' }}>
-                          <MapPin size={16} />
-                          <span>{event.location}</span>
-                        </div>
-                        {/* <div className="flex items-center gap-2 text-gray-600 text-sm">
-                          <Users size={16} />
-                          <span>{event.attendees} attendees</span>
-                        </div> */}
-                      </div>
-
-                      {/* {event.type === 'upcoming' && (
-                        <a
-                          href={`https://discord.com/events/779003158361014372/${event.id}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors inline-flex items-center justify-center gap-2"
-                        >
-                          View on Discord
-                          <ExternalLink size={16} />
-                        </a>
-                      )} */}
-                    </div>
+              {/* Upcoming Events Section */}
+              <div className="mb-16">
+                <h2 className="text-3xl mb-8 text-white">Upcoming Events</h2>
+                {upcomingEvents.length > 0 ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {upcomingEvents.map(renderEventCard)}
                   </div>
-                ))}
+                ) : (
+                  <div className="text-center py-12">
+                    <p className="text-lg" style={{ color: '#a8dadc' }}>No upcoming events at this time.</p>
+                  </div>
+                )}
               </div>
 
-              {events.length === 0 && (
-                <div className="text-center py-12">
-                  <p className="text-lg" style={{ color: '#a8dadc' }}>No events found.</p>
-                </div>
-              )}
+              {/* Past Events Section */}
+              <div>
+                <h2 className="text-3xl mb-8 text-white">Past Events</h2>
+                {pastEvents.length > 0 ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {pastEvents.map(renderEventCard)}
+                  </div>
+                ) : (
+                  <div className="text-center py-12">
+                    <p className="text-lg" style={{ color: '#a8dadc' }}>No past events recorded.</p>
+                  </div>
+                )}
+              </div>
             </>
           )}
         </div>
