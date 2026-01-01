@@ -13,7 +13,7 @@ export function Navigation() {
     { name: 'Team', path: '/team' },
     { name: 'Photos', path: '/photos' },
     { name: 'Social', path: '/social' },
-    { name: 'Join', path: '/join' },
+    // { name: 'Join', path: '/join' },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -32,7 +32,7 @@ export function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-1">
+          <div className="hidden md:flex items-center ml-auto space-x-2">
             {navItems.map((item) => (
               <Link
                 key={item.path}
@@ -46,6 +46,17 @@ export function Navigation() {
                 {item.name}
               </Link>
             ))}
+
+            {/* Join Discord Button */}
+            <a
+              href="https://discord.gg/xYK5CUU2zr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-2 rounded-md bg-indigo-600 text-white font-semibold
+                        hover:bg-indigo-500 transition-colors shadow-md"
+            >
+              Join Discord
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -74,6 +85,18 @@ export function Navigation() {
                 {item.name}
               </Link>
             ))}
+
+            {/* Mobile Join Discord Button */}
+            <a
+              href="https://discord.gg/xYK5CUU2zr"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsOpen(false)}
+              className="block mx-4 mt-2 text-center px-4 py-2 rounded-md
+                        bg-indigo-600 text-white font-semibold hover:bg-indigo-500"
+            >
+              Join Discord
+            </a>
           </div>
         )}
       </div>

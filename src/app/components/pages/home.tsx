@@ -17,7 +17,7 @@ export function Home() {
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
-                  to="/join"
+                  to="https://discord.gg/xYK5CUU2zr"
                   className="bg-white text-blue-600 px-8 py-3 rounded-lg hover:bg-blue-50 transition-colors inline-flex items-center gap-2"
                 >
                   Join Our Discord

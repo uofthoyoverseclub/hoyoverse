@@ -1,4 +1,4 @@
-import { Instagram, Linkedin } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 
 // Discord icon component
 const DiscordIcon = ({ size = 24 }: { size?: number }) => (
@@ -8,21 +8,27 @@ const DiscordIcon = ({ size = 24 }: { size?: number }) => (
 );
 
 // TikTok icon component
-const TikTokIcon = ({ size = 24 }: { size?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+const TikTokIcon = ({ size = 24, className = '' }: { size?: number; className?: string }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+  >
+    <path d="M12.75 2h3.02c.2 1.55.96 2.98 2.18 4.02A7.47 7.47 0 0 0 22 7.5v3.03a10.47 10.47 0 0 1-5.25-1.55v6.27a6.75 6.75 0 1 1-6.75-6.75c.43 0 .86.04 1.25.12v3.1a3.75 3.75 0 1 0 2.25 3.53V2z" />
   </svg>
 );
 
 export function Social() {
   const socials = [
-    {
-      name: 'Discord',
-      description: 'Join our Discord server to connect with the community, stay updated on events, and chat with fellow members!',
-      url: 'https://discord.gg/3De2staqpN',
-      icon: DiscordIcon,
-      color: 'bg-indigo-500 hover:bg-indigo-600',
-    },
+    // {
+    //   name: 'Discord',
+    //   description: 'Join our Discord server to connect with the community, stay updated on events, and chat with fellow members!',
+    //   url: 'https://discord.gg/3De2staqpN',
+    //   icon: DiscordIcon,
+    //   color: 'bg-indigo-500 hover:bg-indigo-600',
+    // },
     {
       name: 'Instagram',
       description: 'Follow us on Instagram for photos, stories, and updates about our latest events and activities!',
@@ -37,13 +43,13 @@ export function Social() {
       icon: TikTokIcon,
       color: 'bg-black hover:bg-gray-800',
     },
-    {
-      name: 'LinkedIn',
-      description: 'Connect with us professionally on LinkedIn to stay informed about club activities and networking opportunities!',
-      url: '#',
-      icon: Linkedin,
-      color: 'bg-blue-600 hover:bg-blue-700',
-    },
+    // {
+    //   name: 'LinkedIn',
+    //   description: 'Connect with us professionally on LinkedIn to stay informed about club activities and networking opportunities!',
+    //   url: '#',
+    //   icon: Linkedin,
+    //   color: 'bg-blue-600 hover:bg-blue-700',
+    // },
   ];
 
   return (
