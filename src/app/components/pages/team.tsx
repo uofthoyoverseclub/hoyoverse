@@ -252,6 +252,18 @@ const teamMembers: TeamMember[] = [
     linkedin: '#',
     type: 'associate',
   },
+  {
+    id: 20,
+    name: 'Erika Chen',
+    role: 'Social Media Associate',
+    campus: 'St. George',
+    study: 'Life Sciences',
+    year: '1st Year',
+    image: '/erika.png',
+    email: '#',
+    linkedin: '#',
+    type: 'associate',
+  },
 ];
 
 export function Team() {

@@ -73,7 +73,7 @@ export function Events() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative text-white py-32" style={{ backgroundImage: 'url(/Banner.png)', backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '500px' }}>
+      <section className="relative text-white py-32" style={{ backgroundImage: 'url(/wallpaper2.webp)', backgroundSize: 'cover', backgroundPosition: 'center 0%', minHeight: '400px' }}>
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-end">
           <div className="max-w-3xl text-right">
@@ -86,7 +86,7 @@ export function Events() {
       </section>
 
       {/* Events List */}
-      <section className="py-20">
+      <section className="py-20" style={{ backgroundColor: '#1d3557' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Filter Buttons */}
           {/* <div className="flex gap-4 mb-12">
@@ -109,13 +109,13 @@ export function Events() {
 
           {/* Loading / Error */}
           {loading && (
-            <p className="text-center text-gray-600 py-20">
+            <p className="text-center py-20" style={{ color: '#a8dadc' }}>
               Loading events...
             </p>
           )}
 
           {error && (
-            <p className="text-center text-red-600 py-20">
+            <p className="text-center py-20" style={{ color: '#ff6b6b' }}>
               Failed to load events.
             </p>
           )}
@@ -127,7 +127,8 @@ export function Events() {
                 {events.map((event) => (
                   <div
                     key={event.id}
-                    className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-200 overflow-hidden"
+                    className="rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden"
+                    style={{ backgroundColor: '#006494' }}
                   >
                     <ImageWithFallback
                       src={event.image}
@@ -147,24 +148,24 @@ export function Events() {
                         )}
                       </div>
 
-                      <h3 className="text-xl mb-3 text-gray-900">
+                      <h3 className="text-xl mb-3 text-white">
                         {event.title}
                       </h3>
 
-                      <p className="text-gray-600 mb-4 line-clamp-2">
+                      <p className="mb-4 line-clamp-2" style={{ color: '#a8dadc' }}>
                         {event.description}
                       </p>
 
                       <div className="space-y-2 mb-4">
-                        <div className="flex items-center gap-2 text-gray-600 text-sm">
+                        <div className="flex items-center gap-2 text-sm" style={{ color: '#a8dadc' }}>
                           <Calendar size={16} />
                           <span>{event.date}</span>
                         </div>
-                        <div className="flex items-center gap-2 text-gray-600 text-sm">
+                        <div className="flex items-center gap-2 text-sm" style={{ color: '#a8dadc' }}>
                           <Clock size={16} />
                           <span>{event.time}</span>
                         </div>
-                        <div className="flex items-center gap-2 text-gray-600 text-sm">
+                        <div className="flex items-center gap-2 text-sm" style={{ color: '#a8dadc' }}>
                           <MapPin size={16} />
                           <span>{event.location}</span>
                         </div>
@@ -192,7 +193,7 @@ export function Events() {
 
               {events.length === 0 && (
                 <div className="text-center py-12">
-                  <p className="text-gray-600 text-lg">No events found.</p>
+                  <p className="text-lg" style={{ color: '#a8dadc' }}>No events found.</p>
                 </div>
               )}
             </>
