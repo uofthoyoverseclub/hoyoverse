@@ -22,7 +22,7 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/events" element={<Events />} />
             <Route path="/team" element={<Team />} />
-            <Route path="/join" element={<Join />} />
+            {/* <Route path="/join" element={<Join />} /> */}
             <Route path="/photos" element={<Photos />} />
             <Route path="/photos/:id" element={<AlbumDetail />} />
             <Route path="/photos_admin" element={<PhotosAdmin />} />
