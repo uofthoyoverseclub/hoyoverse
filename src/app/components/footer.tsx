@@ -39,7 +39,7 @@ export function Footer() {
               <li><a href="/about" className="hover:text-white transition-colors">About Us</a></li>
               <li><a href="/events" className="hover:text-white transition-colors">Events</a></li>
               <li><a href="/photos" className="hover:text-white transition-colors">Photos</a></li>
-              <li><a href="/join" className="hover:text-white transition-colors">Join Us</a></li>
+              <li><a href="https://discord.gg/xYK5CUU2zr" className="hover:text-white transition-colors">Join Us</a></li>
             </ul>
           </div>
 
