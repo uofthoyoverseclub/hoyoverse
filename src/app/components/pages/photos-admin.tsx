@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Camera, Plus, X, FolderOpen, Loader2 } from 'lucide-react';
+import { GoogleDriveImage } from '../figma/GoogleDriveImage';
 
 interface PhotoUpload {
   imageUrl: string;
@@ -271,13 +272,10 @@ export function PhotosAdmin() {
                   </p>
                   {coverPhoto && (
                     <div className="mt-3">
-                      <img 
+                      <GoogleDriveImage 
                         src={convertGoogleDriveUrl(coverPhoto)} 
                         alt="Cover preview"
                         className="w-full max-w-md h-48 object-cover rounded-lg"
-                        onError={(e) => {
-                          e.currentTarget.src = '/logo192.png';
-                        }}
                       />
                     </div>
                   )}
@@ -339,17 +337,10 @@ export function PhotosAdmin() {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-2 max-h-96 overflow-y-auto">
                     {photos.map((photo, index) => (
                       <div key={`photo-${index}-${photo.imageUrl.substring(0, 20)}`} className="relative group">
-                        <img 
+                        <GoogleDriveImage 
                           src={photo.imageUrl} 
                           alt={`Photo ${index + 1}`}
                           className="w-full h-24 object-cover rounded"
-                          loading="lazy"
-                          onError={(e) => {
-                            const target = e.currentTarget;
-                            if (target.src !== '/logo.png') {
-                              target.src = '/logo.png';
-                            }
-                          }}
                         />
                         <button
                           type="button"
