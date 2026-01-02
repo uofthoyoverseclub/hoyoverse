@@ -14,8 +14,13 @@ import {
   setCoverPhoto
 } from './src/db/photoQueries.js';
 import { getPublicFolderFiles, extractFolderId } from './src/utils/googleDrive.js';
+import session from 'express-session';
+import { DISCORD_WHITELIST } from './src/auth/whitelist.js';
+import { requireAuth } from './src/auth/requireAuth.js';
 
 dotenv.config();
+
+const CLIENT_APP_URL = process.env.CLIENT_APP_URL || 'http://localhost:5173';
 
 // Initialize databases
 initializeDatabase();
@@ -26,6 +31,7 @@ startSyncSchedule(15);
 
 const app = express();
 app.use(express.json());
+
 
 // Get all events from database
 app.get('/api/discord-events', async (req, res) => {
@@ -190,6 +196,77 @@ app.post('/api/albums/fetch-drive-folder', async (req, res) => {
       error: error.message || 'Failed to fetch folder images' 
     });
   }
+});
+
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'dev-secret',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    secure: false // set true in production with HTTPS
+  }
+}));
+
+app.get('/api/auth/discord', (req, res) => {
+  const params = new URLSearchParams({
+    client_id: process.env.DISCORD_CLIENT_ID,
+    redirect_uri: process.env.DISCORD_REDIRECT_URI,
+    response_type: 'code',
+    scope: 'identify'
+  });
+
+  res.redirect(`https://discord.com/api/oauth2/authorize?${params}`);
+});
+
+app.get('/api/auth/discord/callback', async (req, res) => {
+  const code = req.query.code;
+
+  if (!code) return res.sendStatus(400);
+
+  try {
+    // Exchange code for token
+    const tokenRes = await fetch('https://discord.com/api/oauth2/token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        client_id: process.env.DISCORD_CLIENT_ID,
+        client_secret: process.env.DISCORD_CLIENT_SECRET,
+        grant_type: 'authorization_code',
+        code,
+        redirect_uri: process.env.DISCORD_REDIRECT_URI
+      })
+    });
+
+    const token = await tokenRes.json();
+
+    // Fetch user
+    const userRes = await fetch('https://discord.com/api/users/@me', {
+      headers: { Authorization: `Bearer ${token.access_token}` }
+    });
+
+    const user = await userRes.json();
+
+    // Whitelist check
+    if (!DISCORD_WHITELIST.has(user.id)) {
+      return res.status(403).send('Not authorized');
+    }
+
+    // Save session
+    req.session.user = {
+      id: user.id,
+      username: user.username
+    };
+
+    res.redirect(`${CLIENT_APP_URL}/photos_admin`);
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
+});
+
+app.get('/api/me', (req, res) => {
+  res.json(req.session.user || null);
 });
 
 app.listen(3000, () => {
