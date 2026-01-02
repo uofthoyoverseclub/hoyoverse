@@ -5,8 +5,8 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Create database in project root
-const dbPath = path.join(__dirname, '..', '..', 'events.db');
+// Create database in persistent data directory
+const dbPath = path.join('/app/data', 'events.db');
 const db = new Database(dbPath);
 
 // Enable foreign keys

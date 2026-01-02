@@ -5,8 +5,8 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Use same database file as events
-const dbPath = path.join(process.cwd(), 'events.db');
+// Use same database file as events in persistent data directory
+const dbPath = path.join('/app/data', 'events.db');
 const db = new Database(dbPath);
 
 // Create albums table
