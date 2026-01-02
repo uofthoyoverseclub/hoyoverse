@@ -3,11 +3,14 @@ FROM node:20-alpine AS build
 
 WORKDIR /app
 
+# Install build dependencies for native modules
+RUN apk add --no-cache python3 make g++
+
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci
+# Install all dependencies (including devDependencies for build)
+RUN npm install
 
 # Copy source code
 COPY . .
@@ -20,11 +23,14 @@ FROM node:20-alpine
 
 WORKDIR /app
 
+# Install runtime dependencies for native modules (better-sqlite3)
+RUN apk add --no-cache python3 make g++
+
 # Copy package files
 COPY package*.json ./
 
-# Install production dependencies only
-RUN npm ci --production
+# Install production dependencies
+RUN npm install --production
 
 # Copy built frontend from build stage
 COPY --from=build /app/dist ./dist

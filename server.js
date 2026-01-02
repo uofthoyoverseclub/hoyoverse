@@ -1,6 +1,8 @@
 import express from 'express';
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { initializeDatabase } from './src/db/schema.js';
 import { getAllEvents, getUpcomingEvents, getPastEvents, getSyncStats } from './src/db/queries.js';
 import { startSyncSchedule, handleManualSync } from './src/jobs/syncEvents.js';
@@ -17,6 +19,9 @@ import { getPublicFolderFiles, extractFolderId } from './src/utils/googleDrive.j
 import session from 'express-session';
 import { DISCORD_WHITELIST } from './src/auth/whitelist.js';
 import { requireAuth } from './src/auth/requireAuth.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
@@ -226,6 +231,7 @@ app.get('/api/auth/discord/callback', async (req, res) => {
 
   try {
     // Exchange code for token
+    console.log('Exchanging code for token with client_id:', process.env.DISCORD_CLIENT_ID);
     const tokenRes = await fetch('https://discord.com/api/oauth2/token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -239,6 +245,12 @@ app.get('/api/auth/discord/callback', async (req, res) => {
     });
 
     const token = await tokenRes.json();
+    console.log('Token response:', token);
+
+    if (token.error) {
+      console.error('Discord OAuth error:', token.error, token.error_description);
+      return res.status(500).send('OAuth error: ' + token.error_description);
+    }
 
     // Fetch user
     const userRes = await fetch('https://discord.com/api/users/@me', {
@@ -246,11 +258,19 @@ app.get('/api/auth/discord/callback', async (req, res) => {
     });
 
     const user = await userRes.json();
+    console.log('User response:', user);
+
+    // Log for debugging
+    console.log('Discord user attempting login:', user.id, user.username);
+    console.log('Whitelist contains:', Array.from(DISCORD_WHITELIST));
 
     // Whitelist check
     if (!DISCORD_WHITELIST.has(user.id)) {
+      console.log('User', user.id, 'NOT in whitelist');
       return res.status(403).send('Not authorized');
     }
+    
+    console.log('User', user.id, 'authorized successfully');
 
     // Save session
     req.session.user = {
@@ -269,7 +289,18 @@ app.get('/api/me', (req, res) => {
   res.json(req.session.user || null);
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`API running on http://localhost:${PORT}`);
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// Catch all handler for React Router - must be AFTER all API routes
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
+}).on('error', (err) => {
+  console.error('Failed to start server:', err);
+  process.exit(1);
 });
