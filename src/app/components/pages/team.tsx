@@ -195,6 +195,18 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: 16,
+    name: 'Zagreus Zheng',
+    role: 'Events Associate',
+    campus: 'St. George',
+    study: 'Political Science',
+    year: '2nd Year',
+    image: '/zag.png',
+    email: '#',
+    linkedin: '#',
+    type: 'associate',
+  },
+  {
+    id: 17,
     name: 'Eric Xia',
     role: 'Vice President of Outreach',
     bio: "Hiii I'm Eric, or wctl on discord, or @lychoruss on instagram (I go by many names) and I do a ton of stuff for the club. In addition to my exec duties, I also cosplay, run our group music projects, and just generally exist in the club spaces at (almost) all times.",
