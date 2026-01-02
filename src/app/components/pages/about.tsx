@@ -51,10 +51,10 @@ export function About() {
             <div>
               <h2 className="text-4xl mb-6" style={{ color: '#a8dadc' }}>Our Founding</h2>
               <p className="text-lg mb-4" style={{ color: '#a8dadc' }}>
-                Our club started as a idea in April of 2025, when our founder Mashal realized that there didn't exist a community for gacha enthusiasts at the University of Toronto. From then on, the idea of HoyoClub grew as the foundation was established to bring together like-minded students. Since September 2025, Hoyoverse Club has grown from a team of 6 students to a 25 large team, and over 300 members of the club. 
+                Our club started as an idea in April of 2025, when our founder Mashal realized that there didn't exist a community for gacha enthusiasts at the University of Toronto. From then on, the idea of HoyoClub grew as the foundation was established to bring together like-minded students. Since September 2025, Hoyoverse Club has grown from a team of 6 students to a large team of 25, and over 300 members of the club. 
               </p>
               <p className="text-lg" style={{ color: '#a8dadc' }}>
-                In Hoyoverse Club, we believe in having fun. Hoyoclub is an for fun club that gives students a community to interact with others who share the same passion for gacha games. We host a variety of events, both online and in-person, to bring our members together and create lasting memories. Check out our photos page to see some of the fun we've had so far!
+                In Hoyoverse Club, we believe in having fun. Hoyoclub is a for fun club that gives students a community to interact with others who share the same passion for gacha games. We host a variety of events, both online and in-person, to bring our members together and create lasting memories. Check out our photos page to see some of the fun we've had so far!
               </p>
             </div>
           </div>
