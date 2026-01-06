@@ -64,7 +64,7 @@ export function Footer() {
         </div>
 
         <div className="border-t mt-8 pt-8 text-center" style={{ borderTopColor: '#a8dadc', color: '#a8dadc' }}>
-          <p className="mb-2">Special thanks to Carmen from our community for providing artwork for the website</p>
+          <p className="mb-2">Special thanks to Carmen and Erika from our community for providing artwork for the website</p>
           <p>&copy; 2025 HoyoClub. All rights reserved.</p>
         </div>
       </div>

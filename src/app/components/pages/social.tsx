@@ -55,7 +55,7 @@ export function Social() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative text-white py-32" style={{ backgroundImage: 'url(/socialbanner.jpg)', backgroundSize: 'cover', backgroundPosition: 'center 40%', minHeight: '400px' }}>
+      <section className="relative text-white py-32" style={{ backgroundImage: 'url(/Snow.jpg)', backgroundSize: 'cover', backgroundPosition: 'center 30%', minHeight: '500px' }}>
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-5xl mb-6">Connect With Us</h1>
