@@ -14,28 +14,13 @@ const sponsors: Sponsor[] = [
   // Example sponsors - replace with actual data
   {
     id: 1,
-    name: 'Example Sponsor 1',
-    logo: '/logo.png',
-    description: 'Supporting the HoyoClub community.',
-    website: 'https://example.com',
-    contribution: 'Event funding and merchandise support',
+    name: 'Plastek Cards',
+    logo: '/Plastek.png',
+    description: '',
+    website: 'https://plastekcards.com/',
+    contribution: '',
   },
-  {
-    id: 2,
-    name: 'Example Sponsor 2',
-    logo: '/logo.png',
-    description: 'Supporting our community events and activities.',
-    website: 'https://example.com',
-    contribution: 'Event sponsorship',
-  },
-  {
-    id: 3,
-    name: 'Example Sponsor 3',
-    logo: '/logo.png',
-    description: 'Helping us provide great experiences for our members.',
-    website: 'https://example.com',
-    contribution: 'Prize sponsorship',
-  },
+
 ];
 
 export function Sponsors() {
@@ -43,12 +28,13 @@ export function Sponsors() {
     <div>
       {/* Hero Section */}
       <section
-        className="relative text-white py-30 bg-center"
+        className="relative text-white py-30"
         style={{
           backgroundImage: "url('/Anaxa.jpg')",
           backgroundSize: 'cover',
           backgroundPosition: 'center 0%',
           backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'scroll',
           minHeight: '500px',
         }}
       >
@@ -89,19 +75,7 @@ export function Sponsors() {
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-2xl mb-2 text-white">{sponsor.name}</h3>
-                  <p className="mb-4" style={{ color: '#a8dadc' }}>
-                    {sponsor.description}
-                  </p>
-                  
-                  {sponsor.contribution && (
-                    <div className="mb-4">
-                      <p className="text-sm font-semibold text-white mb-1">Contribution:</p>
-                      <p className="text-sm" style={{ color: '#a8dadc' }}>
-                        {sponsor.contribution}
-                      </p>
-                    </div>
-                  )}
+                  <h3 className="text-2xl mb-3 text-white">{sponsor.name}</h3>
 
                   {sponsor.website && (
                     <a
