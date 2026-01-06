@@ -104,7 +104,7 @@ export function Sponsors() {
           </h2>
           <p className="text-xl mb-8" style={{ color: '#a8dadc' }}>
             Help us create amazing experiences for the HoyoClub community. We offer various 
-            sponsorship tiers with different benefits including event presence, social media 
+            sponsorship opportunities with different benefits including event presence, social media 
             promotion, and direct community engagement.
           </p>
           <a
