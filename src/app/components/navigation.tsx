@@ -13,6 +13,7 @@ export function Navigation() {
     { name: 'Team', path: '/team' },
     { name: 'Photos', path: '/photos' },
     { name: 'Social', path: '/social' },
+    { name: 'Sponsors', path: '/sponsors' },
     // { name: 'Join', path: '/join' },
   ];
 

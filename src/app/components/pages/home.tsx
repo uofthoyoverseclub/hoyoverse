@@ -6,10 +6,10 @@ export function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative text-white" style={{ backgroundImage: 'url(/wallpaper.jpeg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="relative text-white min-h-screen flex items-center" style={{ backgroundImage: 'url(/HuTao.jpg)', backgroundSize: 'cover', backgroundPosition: 'center 20%' }}>
         <div className="absolute inset-0 bg-black/40"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-12 items-center">
             <div>
               <h1 className="text-5xl mb-6">Welcome to Hoyoverse Club!</h1>
               <p className="text-xl text-blue-100 mb-8">
@@ -30,13 +30,6 @@ export function Home() {
                   View Events
                 </Link>
               </div>
-            </div>
-            <div className="hidden lg:block">
-              <ImageWithFallback
-                src="/Homepage1.jpg"
-                alt="Hoyoverse Club members"
-                className="rounded-lg shadow-2xl"
-              />
             </div>
           </div>
         </div>

@@ -10,6 +10,7 @@ import { Photos } from './components/pages/photos';
 import { AlbumDetail } from './components/pages/album-detail';
 import { PhotosAdmin } from './components/pages/photos-admin';
 import { Social } from './components/pages/social';
+import { Sponsors } from './components/pages/sponsors';
 import { ProtectedRoute } from './components/auth/ProtectedRoute';
 
 export default function App() {
@@ -35,6 +36,7 @@ export default function App() {
               }
             />
             <Route path="/social" element={<Social />} />
+            <Route path="/sponsors" element={<Sponsors />} />
           </Routes>
         </main>
         <Footer />

@@ -332,11 +332,11 @@ export function Team() {
     <div>
       {/* Hero Section */}
       <section
-        className="relative text-white py-30 bg-center"
+        className="relative text-white py-50 bg-center"
         style={{
-          backgroundImage: "url('/flins%20lauma.webp')",
+          backgroundImage: "url('/Furina.jpg')",
           backgroundSize: 'cover',
-          backgroundPosition: 'center 20%',
+          backgroundPosition: 'center 15%',
           backgroundRepeat: 'no-repeat',
         }}
       >
