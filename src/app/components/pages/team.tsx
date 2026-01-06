@@ -23,7 +23,7 @@ const teamMembers: TeamMember[] = [
     id: 1,
     name: 'Mashal Nihal',
     role: 'President',
-    bio: "Supreme Alpha Leader, Yaoi Enjoyer, Aaron's Ragebait Victim, Kaveh Lover, Prey of Gacha, Edgy Anemo Teen Girl.",
+    bio: "Supreme Alpha Leader, Head Fujoshi, Edgy Anemo Teen Girl.",
     image: '/Mashal.jpg',
     email: '#',
     linkedin: '#',

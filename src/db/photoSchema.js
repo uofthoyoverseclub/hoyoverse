@@ -6,7 +6,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Use same database file as events in persistent data directory
-const dbPath = path.join('/app/data', 'events.db');
+// Use /app/data in Docker, otherwise use ./data in project root
+const dataDir = process.env.DOCKER_ENV ? '/app/data' : path.join(process.cwd(), 'data');
+const dbPath = path.join(dataDir, 'events.db');
 const db = new Database(dbPath);
 
 // Create albums table
